@@ -1,0 +1,82 @@
+#top-right-btn {
+    position: absolute;/* posizione assoluta */
+    top: 60px;    /* distanza dall’alto */
+    right: 20px;  /* distanza da destra */
+    padding: 10px 20px;/* spazio interno */
+    font-size: 16px;/* dimensione del testo */
+}
+body {
+    font-family: 'Times New Roman', Times, serif;/* carattere serif */
+    line-height: 1.6;/* altezza della linea */
+    margin: 0;/* margine zero */
+    padding: 0;/* padding zero */
+    background: #f4f4f4;/* sfondo grigio chiaro */
+    color: #222;/* colore del testo scuro */
+}
+
+header {
+    background: #003366;/* sfondo blu scuro */
+    color: white;/* testo bianco */
+    padding: 40px 20px;/* spazio interno */
+    text-align: center;
+}
+
+main {
+    max-width: 900px;/* larghezza massima del contenuto */
+    margin: auto;/* centra il contenuto */
+    padding: 20px;/* spazio interno */
+    background: white;/* sfondo bianco per il contenuto */
+}
+
+h2 {
+    border-left: 5px solid #003366;/* linea verticale a sinistra */
+    padding-left: 10px;/* spazio tra la linea e il testo */
+    margin-top: 40px;/* spazio sopra l’intestazione */
+}
+
+figure {
+    margin: 20px 0;/* spazio sopra e sotto la figura */
+    scale: 1.0;/* scala iniziale */
+    text-align: center;/* centra l’immagine e la didascalia */
+}
+
+figure img {
+    max-width: 50%;/* larghezza massima dell’immagine */
+    border-radius: 6px;/* angoli arrotondati */
+}
+
+figcaption {
+    font-size: 0.9em;/* dimensione del testo più piccola */
+    color: #555;/* colore grigio per la didascalia */
+}
+
+footer {
+    text-align: center;/* centra il testo del footer */
+    padding: 20px;/* spazio interno */
+    background: #003366;/* sfondo blu scuro */
+    color: white;/* testo bianco */
+    margin-top: 40px;/* spazio sopra il footer */
+}
+
+  .accordion {
+    background-color: #eee;
+    cursor: pointer;
+    padding: 15px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 16px;
+    transition: 0.3s;
+  }
+
+  .active, .accordion:hover {
+    background-color: #ccc;
+  }
+
+  .panel {
+    padding: 0 15px;
+    display: none;
+    background-color: white;
+    overflow: hidden;
+  }

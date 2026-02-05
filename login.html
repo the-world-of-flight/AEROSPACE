@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+
+   <h1>Benvenuto nel nostro sito</h1>
+    <div class="login-box">
+        <label for="password">Password</label>
+
+        <input type="password" id="password" name="password" required>
+
+        <label class="show-password">
+            <input type="checkbox" onclick="mostraPassword()">
+            Mostra password
+        </label>
+
+        <button onclick="controlla()">Accedi</button>
+        <p id="accesso conentito"></p>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="login.js"></script>
+</body>
+</html>

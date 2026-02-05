@@ -1,0 +1,136 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    background-image: url('background.webp');
+    background-size: cover;
+    background-position: center;
+}
+
+h1 {
+    color: #ffffff;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgb(34, 0, 255);
+}
+
+form {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgb(3, 8, 160);
+    width: 300px;
+}
+
+input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ffffff;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.error {
+    color: red;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.success {
+    color: green;
+    text-align: center;
+    margin-bottom: 10px;
+}
+a {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    color: #4CAF50;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+label {
+    font-weight: bold;
+    color: red;
+    text-shadow: 2px 2px 4px rgb(0, 0, 0);
+}
+label[for="remember"] {
+    font-weight: normal;
+}
+.checkbox-container {
+    display: flex;
+    align-items: center;
+}
+.checkbox-container input[type="checkbox"] {
+    margin-right: 5px;
+}
+.checkbox-container label {
+    margin: 0;
+}
+.forgot-password {
+    text-align: right;
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+.forgot-password a {
+    font-size: 0.9em;
+    color: #007BFF;
+}
+.forgot-password a:hover {
+    text-decoration: underline;
+}
+@media (max-width: 400px) {
+    form {
+        width: 90%;
+        padding: 15px;
+    }
+}
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #008CBA;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+button:hover {
+    background-color: #007B9E;
+}
+button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+button:disabled:hover {
+    background-color: #cccccc;
+}
+#messaggio {
+    font-weight: bold;
+    margin-top: 10px;
+}
+#messaggio.success {
+    color: green;
+}
+#messaggio.error {
+    color: red;
+}
