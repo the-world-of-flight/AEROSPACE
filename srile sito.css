@@ -58,25 +58,60 @@ footer {
     margin-top: 40px;/* spazio sopra il footer */
 }
 
-  .accordion {
-    background-color: #eee;
+/* Stile base dei pulsanti Accordion */
+.accordion {
+    background-color: #003366; /* Blu come il tuo header */
+    color: white;
     cursor: pointer;
-    padding: 15px;
+    padding: 18px;
     width: 100%;
     border: none;
     text-align: left;
     outline: none;
-    font-size: 16px;
-    transition: 0.3s;
-  }
+    font-size: 18px;
+    font-weight: bold;
+    transition: 0.4s;
+    margin-top: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-  .active, .accordion:hover {
-    background-color: #ccc;
-  }
+/* Effetto al passaggio del mouse e quando è attivo */
+.active, .accordion:hover {
+    background-color: #004a94;
+}
 
-  .panel {
-    padding: 0 15px;
-    display: none;
+/* Icona + / - a destra */
+.accordion::after {
+    content: '\002B'; /* Segno + */
+    color: white;
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+.active::after {
+    content: "\2212"; /* Segno - */
+}
+
+/* Pannello che contiene il testo nascosto */
+.panel {
+    padding: 0 18px;
     background-color: white;
+    max-height: 0;
     overflow: hidden;
-  }
+    transition: max-height 0.3s ease-out; /* Animazione fluida */
+    border-bottom: 1px solid #ddd;
+}
+
+/* Spaziatura interna per non far appiccicare il testo ai bordi */
+.panel-content {
+    padding: 20px 0;
+}
+
+.panel h2 {
+    margin-top: 0;
+    font-size: 20px;
+    color: #003366;
+}

@@ -1,0 +1,225 @@
+.riga-contenuto {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 40px;
+    margin-top: 20px;
+}
+
+/* AGGIUNTO: Questa classe inverte l'ordine (Immagine a sinistra, testo a destra) */
+/* Usala nell'HTML così: <section class="riga-contenuto inversa"> */
+.riga-contenuto.inversa {
+    flex-direction: row-reverse;
+}
+
+.testo {
+    flex: 2;
+}
+
+.immagine-destra img {
+    width: 100%;
+    height: auto;
+    max-width: 300px;
+    display: block;
+    /* RIMOSSO: top e position relative che creavano confusione */
+}
+
+.immagine-sinistra img {
+    width: 100%;
+    height: auto;
+    max-width: 300px;
+    display: block;
+    /* RIMOSSO: top, left e position relative per evitare che l'immagine esca dai bordi */
+}
+
+/* MODIFICATO: Layout per l'accordion dei Fratelli Wright */
+.testo-immagine-flex {
+    display: flex;
+    /* AGGIUNTO: row-reverse mette l'immagine a sinistra e il testo a destra */
+    flex-direction: row-reverse; 
+    gap: 20px;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.testo-immagine-flex .testo { flex: 2; }
+.testo-immagine-flex figure { flex: 1; margin: 0; }
+
+@media (max-width: 700px) {
+    .riga-contenuto, .testo-immagine-flex {
+        flex-direction: column !important; /* Torna uno sotto l'altro sui telefoni */
+    }
+}
+
+/* --- SEZIONE GUERRE MONDIALI (Testo a Sinistra, Immagine a Destra) --- */
+/* Sezione Guerre Mondiali: Testo compresso a destra, immagine larga a sinistra */
+.riga-contenuto3 .testo-immagine-flex {
+    display: flex;
+    flex-direction: row-reverse; /* Mantiene l'immagine a sinistra se il testo è primo nell'HTML */
+    gap: 50px;                   /* Aumentiamo lo spazio tra i due per "comprimere" di più */
+    align-items: center;
+    padding: 20px 0;
+}
+
+.riga-contenuto3 .testo {
+    flex: 1;                     /* Ridotto: il testo ora occupa meno spazio e si comprime */
+    text-align: right;            /* Mantiene il testo allineato a sinistra dentro la sua colonna */
+    right: 0%;
+}
+
+.riga-contenuto3 .immagine-destra {
+    flex: 1.5;                   /* Aumentato: l'immagine prende più respiro a sinistra */
+    margin: 0;
+}
+
+.riga-contenuto3 .immagine-destra img {
+    width: 150%;
+    max-width: 350px;            /* Permettiamo all'immagine di essere più grande */
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    position: static;
+}
+
+/* Responsività per schermi piccoli */
+@media (max-width: 700px) {
+    .riga-contenuto3 .testo-immagine-flex {
+        flex-direction: column !important;
+    }
+}
+/* Stile base dei pulsanti Accordion */
+.accordion {
+    background-color: #003366; /* Blu come il tuo header */
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 18px;
+    font-weight: bold;
+    transition: 0.4s;
+    margin-top: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Effetto al passaggio del mouse e quando è attivo */
+.active, .accordion:hover {
+    background-color: #004a94;
+}
+
+/* Icona + / - a destra */
+.accordion::after {
+    content: '\002B'; /* Segno + */
+    color: white;
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+.active::after {
+    content: "\2212"; /* Segno - */
+}
+
+/* Pannello che contiene il testo nascosto */
+.panel {
+    padding: 0 18px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out; /* Animazione fluida */
+    border-bottom: 1px solid #ddd;
+}
+
+/* Spaziatura interna per non far appiccicare il testo ai bordi */
+.panel-content {
+    padding: 20px 0;
+}
+
+.panel h2 {
+    margin-top: 0;
+    font-size: 20px;
+    color: #003366;
+}
+
+/* Layout interno al pannello per affiancare testo e immagine */
+.testo-immagine-flex {
+    display: flex;
+    gap: 20px;
+    padding: 20px 0;
+    align-items: center;
+}
+
+.testo-immagine-flex .testo { flex: 2; }
+.testo-immagine-flex figure { flex: 1; }
+
+
+#top-right-btn {
+    position: absolute;/* posizione assoluta */
+    top: 60px;    /* distanza dall’alto */
+    right: 20px;  /* distanza da destra */
+    padding: 10px 20px;/* spazio interno */
+    font-size: 16px;/* dimensione del testo */
+}
+body {
+    font-family: 'Times New Roman', Times, serif;/* carattere serif */
+    line-height: 1.6;/* altezza della linea */
+    margin: 0;/* margine zero */
+    padding: 0;/* padding zero */
+    background: #f4f4f4;/* sfondo grigio chiaro */
+    color: #222;/* colore del testo scuro */
+}
+
+header {
+    background: #003366;/* sfondo blu scuro */
+    color: white;/* testo bianco */
+    padding: 40px 20px;/* spazio interno */
+    text-align: center;
+}
+
+main {
+    max-width: 900px;/* larghezza massima del contenuto */
+    margin: auto;/* centra il contenuto */
+    padding: 20px;/* spazio interno */
+    background: white;/* sfondo bianco per il contenuto */
+}
+
+h2 {
+    border-left: 5px solid #003366;/* linea verticale a sinistra */
+    padding-left: 10px;/* spazio tra la linea e il testo */
+    margin-top: 40px;/* spazio sopra l’intestazione */
+}
+
+figure {
+    margin: 20px 0;/* spazio sopra e sotto la figura */
+    scale: 1.0;/* scala iniziale */
+    text-align: center;/* centra l’immagine e la didascalia */
+}
+
+figure img {
+    max-width: 50%;/* larghezza massima dell’immagine */
+    border-radius: 6px;/* angoli arrotondati */
+}
+
+figcaption {
+    font-size: 0.9em;/* dimensione del testo più piccola */
+    color: #555;/* colore grigio per la didascalia */
+}
+
+footer {
+    text-align: center;/* centra il testo del footer */
+    padding: 20px;/* spazio interno */
+    background: #003366;/* sfondo blu scuro */
+    color: white;/* testo bianco */
+    margin-top: 40px;/* spazio sopra il footer */
+}
+
+  .panel {
+    padding: 0 15px;
+    display: none;
+    background-color: white;
+    overflow: hidden;
+  }

@@ -18,11 +18,11 @@ body {
     color: #222;/* colore del testo scuro */
 }
 #top-right-btn {
-    position: absolute;
-    top: 20px;    /* distanza dall’alto */
+    position: absolute;/* posizione assoluta */
+    top: 60px;    /* distanza dall’alto */
     right: 20px;  /* distanza da destra */
-    padding: 10px 20px;
-    font-size: 16px;
+    padding: 10px 20px;/* spazio interno */
+    font-size: 16px;/* dimensione del testo */
 }
 #center2 {
     position: absolute;
@@ -86,7 +86,7 @@ p {
 }
 
 /* 2. Proprietà comuni: scritte una sola volta per evitare errori */
-.card, .card2, .card3 {
+.card, .card2, .card3, .card4 {
     width: 300px;            /* Larghezza fissa */
     height: 300px;           /* Altezza fissa per renderle perfettamente quadrate */
     padding: 20px;
@@ -123,8 +123,14 @@ p {
     order: 1; /* Prima posizione */
 }
 
+.card4 {
+    background-image: url("polizia.png");
+    color: rgb(255, 0, 0);
+    order: 4; /* Quarta posizione */
+}
+
 /* 4. Effetto Hover (valido per tutte) */
-.card:hover, .card2:hover, .card3:hover {
+.card:hover, .card2:hover, .card3:hover, .card4:hover {
     transform: translateY(-10px);
     box-shadow: 0 8px 20px rgba(0,0,0,0.25);
 }

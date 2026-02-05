@@ -19,6 +19,13 @@ card3.addEventListener("click", () => {
     window.location.href = "maffucci.html"; // pagina di destinazione
 });
 
+const card4 = document.querySelector(".card4");
+
+card4.addEventListener("click", () => {
+    window.location.href = "pagina di cortesia.html"; // pagina di destinazione
+});
+
+
 if (localStorage.getItem("loggedIn") !== "true") {
     window.location.href = "login.html";
 }
