@@ -173,3 +173,20 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 800);
     }
 });
+
+// Gestione scorrimento frecce
+const container = document.querySelector('.carousel-container');
+const prevBtn = document.querySelector('.prev');
+const nextBtn = document.querySelector('.next');
+
+if (container && prevBtn && nextBtn) {
+    const scrollAmount = 320; // Larghezza della card + gap
+
+    nextBtn.onclick = () => {
+        container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    };
+
+    prevBtn.onclick = () => {
+        container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    };
+}
