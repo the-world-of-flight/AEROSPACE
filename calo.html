@@ -5,13 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="dalla leggenda al progresso.css">
+    <link rel="icon" type="image/png" href="favicon.jpeg">
 </head>
 <body>
     <header>
         <h1>Dalla leggenda al progresso</h1>
+
+          <div class="search-wrapper">
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Cerca un eroe, una data o un concetto...">
+                    <div id="resultsList" class="results-dropdown"></div>
+                </div>
+            </div>
+                <div class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+
+<div class="menu-screen" id="menuScreen">
+    <div class="menu-columns">
+        <div class="menu-col">
+            <h3>informazioni</h3>
+            <a href="index.html">Home</a>
+            <a href="fonti.html">Fonti</a>
+            <a href="chisiamo.html">chi siamo</a>
+        </div>
+        
+        <div class="menu-col">
+            <h3>Argomenti trattati</h3>
+            <a href="olla.html">Interdisciplinarità dell aerospazio</a>
+            <a href="calo.html">dalla leggenda al progresso</a>
+            <a href="maffucci.html">Post-eroismo</a>
+        </div>
+
+        <div class="menu-col">
+            <h3>Extra</h3>
+            <a href="#">Privacy</a>
+            <a href="#">Credits</a>
+        </div>
+    </div>
+</div>
     </header>
 <main>
-    <section class="riga-contenuto">
+    <section class="riga-contenuto" id="mito-icaro">
         <div class="testo">
             <h2>Il mito di Icaro</h2>
             <p>Fin dall’antichità l’uomo ha sognato di sollevarsi in
@@ -35,7 +72,7 @@ sono gestiti e divulgati grazie ai satelliti, che sono frutto dell’evoluzione 
         </figure>
     </section>
 
-<section class="riga-contenuto2">
+<section class="riga-contenuto2" id="fratelli-wright">
     <button class="accordion">I Fratelli Wright</button>
     
     <div class="panel">
@@ -70,7 +107,7 @@ dimostrazioni del 1908 in Europa e negli Stati Uniti sancirono l’affermazione 
     </div>
 </section>
     
-<section class="riga-contenuto3">
+<section class="riga-contenuto3" id="guerre-mondiali">
     <button class="accordion">L'aviazione durante le guerre mondiali</button>
     
     <div class="panel">
@@ -104,7 +141,14 @@ dimostrazioni del 1908 in Europa e negli Stati Uniti sancirono l’affermazione 
 
 </section>
 </main>
+    <div id="hidden-scanner" style="display:none;">
+        <iframe src="olla.html" id="page1"></iframe>
+        <iframe src="index.html" id="page2"></iframe>
+        <iframe src="maffucci.html" id="page3"></iframe>
+        <iframe src="olla2.html"id="page4"></iframe>
+    </div>
     <button id="top-right-btn" onclick="window.location.href='index.html'">home</button>
+    
     <script src="script sito.js"></script>
 </body>
 </html>

@@ -5,15 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interdisciplinarità dell’Aerospazio</title>
     <link rel="stylesheet" href="srile sito.css">
+    <link rel="icon" type="image/png" href="favicon.jpeg">
     
     
 </head>
 <body>
     <header>
         <h1>Interdisciplinarità dell'Aereospazio</h1>
+
+          <div class="search-wrapper">
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Cerca un eroe, una data o un concetto...">
+                    <div id="resultsList" class="results-dropdown"></div>
+                </div>
+            </div>
+                <div class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+
+<div class="menu-screen" id="menuScreen">
+    <div class="menu-columns">
+        <div class="menu-col">
+            <h3>informazioni</h3>
+            <a href="index.html">Home</a>
+            <a href="fonti.html">Fonti</a>
+            <a href="chisiamo.html">chi siamo</a>
+        </div>
+        
+        <div class="menu-col">
+            <h3>Argomenti trattati</h3>
+            <a href="olla.html">Interdisciplinarità dell aerospazio</a>
+            <a href="calo.html">dalla leggenda al progresso</a>
+            <a href="maffucci.html">Post-eroismo</a>
+        </div>
+
+        <div class="menu-col">
+            <h3>Extra</h3>
+            <a href="#">Privacy</a>
+            <a href="#">Credits</a>
+        </div>
+    </div>
+</div>
     </header>
     <main>
-        <section>
+        <section id="iterdisciplinarietà-aerospazio">
                 <h2>Interdisciplinarità dell’Aerospazio</h2>
                 <p>Volare è una sfida che l’uomo affronta da sempre, e l’aerospazio è il punto in cui questa sfida prende forma. Ogni velivolo nasce dall’incontro di competenze diverse che dialogano tra loro: scienza, tecnologia e capacità umane si uniscono per superare i limiti della distanza, della velocità e dell’altitudine.
                 In questo equilibrio complesso, nessuna disciplina lavora da sola. È la collaborazione tra ingegneria, fisica, matematica, biologia e informatica che rende possibile il volo moderno, trasformando idee e sogni in sistemi reali, affidabili e sicuri.</p>
@@ -23,7 +60,7 @@
         
         </section>
 
-        <section>
+        <section id="ingegneria-progettazione">
             
             <button class="accordion">Ingegneria e Progettazione</button>
             <div class="panel">
@@ -35,7 +72,7 @@
             </div>
         </section>
 
-        <section>
+        <section id="fisica-matematica">
             <button class="accordion">Fisica e Matematica del Volo</button>
             <div class="panel">
                 <h2>Fisica e Matematica del Volo</h2>
@@ -46,7 +83,7 @@
             </div>
         </section>
         
-        <section>
+        <section id="Uomo-Volo">
             <button class="accordion">Uomo e Volo</button>
             <div class="panel">
             <h2>Uomo e Volo</h2>
@@ -57,7 +94,7 @@
             </div>
         </section>
 
-        <section>
+        <section id="tecnologia-innovazione">
             <button class="accordion">Tecnologia e Innovazione</button>
             <div class="panel">
             <h2>Tecnologia e Innovazione</h2>
@@ -68,6 +105,7 @@
         </div>
         </section>
     </main>
+
     <button id="top-right-btn" onclick="window.location.href='index.html'">home</button>
     <script src="script sito.js"></script>
 </body>

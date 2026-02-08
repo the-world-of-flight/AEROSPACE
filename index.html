@@ -1,43 +1,104 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homepage</title>
+    <title>Maxwell - The World of Flight</title>
     <link rel="stylesheet" href="home.css">
-</head>
+    <link rel="icon" type="image/png" href="favicon.jpeg">
 
 <body>
     <header>
         <div class="content">
-            <h1>maxwell-air-and-space </h1>
-            <p>qui troverai le sezioni che ti porteranno agli argomenti trattati</p>
-        </div>
+            <h1>Maxwell: The World of Flight</h1>
+            
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
 
-        <button id="top-right-btn" onclick="logout()">Logout</button>
+            <div class="menu-screen" id="menuScreen">
+                <div class="menu-columns">
+                    <div class="menu-col">
+                        <h3>Informazioni</h3>
+                        <a href="index.html">Home</a>
+                        <a href="fonti.html">Fonti</a>
+                        <a href="chisiamo.html">Chi siamo</a>
+                    </div>
+                    <div class="menu-col">
+                        <h3>Argomenti</h3>
+                        <a href="olla.html">Interdisciplinarietà</a>
+                        <a href="calo.html">Leggenda e Progresso</a>
+                        <a href="maffucci.html">Post-eroismo</a>
+                        <a href="olla2.html">Eroi del Cielo</a>
+                    </div>
+                    <div class="menu-col">
+                        <h3>Extra</h3>
+                        <a href="#">Privacy</a>
+                        <a href="#">Credits</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="search-wrapper">
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Cerca un eroe, una data o un concetto...">
+                    <div id="resultsList" class="results-dropdown"></div>
+                </div>
+            </div>
+
+            <button id="top-right-btn" onclick="logout()">Logout</button>
+        </div>
     </header>
 
-    </header>
+    <div class="carousel-wrapper">
+        <button class="nav-btn prev" id="prevBtn">&#10094;</button>
+        
+        <div class="carousel-container">
+            <div class="cardrow">
+                <div class="card">
+                    <a href="olla.html">
+                        <img src="WhatsApp Image 2026-01-29 at 13.21.42.jpeg" alt="Interdisciplinarietà">
+                        <div class="overlay"><h2>Interdisciplinarietà</h2></div>
+                    </a>
+                </div>
 
-    <div class="cardrow">
-        <div class="card">
-            <h2>Interdisciplinarità dell’Aerospazio</h2>
+                <div class="card">
+                    <a href="calo.html">
+                        <img src="comando areonautica.png" alt="Leggenda e Progresso">
+                        <div class="overlay"><h2>Leggenda e Progresso</h2></div>
+                    </a>
+                </div>
+
+                <div class="card">
+                    <a href="maffucci.html">
+                        <img src="post eroismo.jpg" alt="Post-eroismo">
+                        <div class="overlay"><h2>Post-eroismo</h2></div>
+                    </a>
+                </div>
+
+                <div class="card">
+                    <a href="olla2.html">
+                        <img src="eroi del cielo.jpeg" alt="Area Riservata">
+                        <div class="overlay"><h2>Eroi del Cielo</h2></div>
+                    </a>
+                </div>
+            </div>
         </div>
 
-        <div class="card2">
-            <h2>Dalla leggenda al progresso</h2>
-        </div>
-    
-
-    <div class="card3">
-        <h2>Il post-eroismo e i nuovi volti dell’eroe nel Novecento</h2>
+        <button class="nav-btn next" id="nextBtn">&#10095;</button>
     </div>
 
-    <div class="card4">
-        <h2>Non entrare</h2>
-    </div>
-    </div>
+    <section class="video-section">
+        <div class="content">
+            <h2 class="section-title">Video Correlati</h2>
+            </div>
+    </section>
+
+
 
     <script src="home.js"></script>
+
 </body>
 </html>

@@ -120,4 +120,4 @@ window.addEventListener("scroll", () => {
 btnTop.addEventListener("click", () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
 });
-//per sbloccarlo
+//per sbloccarlo aggiungi ?reset=true all'url della pagina o localStorage.clear()

@@ -1,7 +1,7 @@
 #top-right-btn {
     position: absolute;/* posizione assoluta */
     top: 60px;    /* distanza dall’alto */
-    right: 20px;  /* distanza da destra */
+    left: 20px;  /* distanza da sinistra */
     padding: 10px 20px;/* spazio interno */
     font-size: 16px;/* dimensione del testo */
 }
@@ -43,6 +43,16 @@ figure {
 figure img {
     max-width: 50%;/* larghezza massima dell’immagine */
     border-radius: 6px;/* angoli arrotondati */
+}
+figure .img1 {
+    max-width: 50%;
+    border-radius: 6px;
+    float: left;
+}
+figure .img2 {
+    max-width: 50%;
+    border-radius: 6px;
+    float: right;
 }
 
 figcaption {
@@ -103,6 +113,8 @@ footer {
     overflow: hidden;
     transition: max-height 0.3s ease-out; /* Animazione fluida */
     border-bottom: 1px solid #ddd;
+    position: relative;
+    top: 10px;
 }
 
 /* Spaziatura interna per non far appiccicare il testo ai bordi */
@@ -114,4 +126,175 @@ footer {
     margin-top: 0;
     font-size: 20px;
     color: #003366;
+}
+
+/* menu a panino */
+.hamburger {
+  width: 30px;
+  height: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  right: 20px;
+  top: 55px;
+  position: fixed; /* Così ti segue mentre scorri */
+  z-index: 1001;   /* Deve essere più alto del 100 della menu-screen */
+}
+
+.hamburger span {
+  display: block;
+  height: 4px;
+  width: 100%;
+  background-color: #000000; /* Colore delle linee */
+  border-radius: 10px;
+  transition: all 0.3s ease-in-out;
+  
+}
+
+
+/* Quando il menu è aperto... */
+.hamburger.open span:nth-child(1) {
+  transform: translateY(10px) rotate(45deg);
+}
+
+.hamburger.open span:nth-child(2) {
+  opacity: 0; /* La linea centrale sparisce */
+}
+
+.hamburger.open span:nth-child(3) {
+  transform: translateY(-11px) rotate(-45deg);
+}
+
+/* Schermata che copre tutto il sito */
+.menu-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #003366; /* Stesso blu del tuo header */
+    z-index: 100; /* Sopra a tutto */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* Inizialmente nascosto */
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s ease-in-out;
+}
+
+/* Quando aggiungiamo la classe .open con JS */
+.menu-screen.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Griglia a colonne */
+.menu-columns {
+    display: flex;
+    width: 80%;
+    justify-content: space-around;
+}
+
+.menu-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-col h3 {
+    color: #ffcc00; /* Un colore di contrasto */
+    margin-bottom: 20px;
+    border-bottom: 1px solid white;
+}
+
+.menu-col a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    transition: color 0.3s;
+}
+
+.menu-col a:hover {
+    color: #ffcc00;
+}
+
+/* Contenitore della ricerca per centrarlo nell'header */
+.search-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 15px;
+}
+
+/* Contenitore della ricerca: aumentiamo il max-width */
+.search-container { 
+    position: relative; 
+    width: 100%;          /* Usa quasi tutta la larghezza disponibile */
+    max-width: 800px;    /* Prima era 500px, ora è molto più larga */
+    z-index: 2005; 
+    margin: 0 auto;      /* Assicura la centratura */
+}
+
+/* Stile dell'input: lo rendiamo più alto e spazioso */
+#searchInput {
+    width: 100%;
+    padding: 15px 25px;  /* Aumentato il padding interno */
+    font-size: 18px;     /* Testo leggermente più grande */
+    border-radius: 30px; /* Angoli più arrotondati (stile moderno) */
+    border: 2px solid #ccc;
+    outline: none;
+    transition: all 0.3s;
+}
+
+/* Feedback quando ci clicchi sopra */
+#searchInput:focus {
+    border-color: #ffcc00; /* Diventa gialla quando scrivi */
+    box-shadow: 0 0 10px rgba(255, 204, 0, 0.3);
+}
+
+#resultsList { 
+    position: absolute; 
+    top: 100%; 
+    left: 0;
+    width: 100%; 
+    background: white; 
+    border: 2px solid #ccc;
+    border-top: none; /* Unisce l'input alla lista */
+    border-radius: 0 0 8px 8px; 
+    box-shadow: 0 8px 16px rgba(0,0,0,0.4); 
+    max-height: 400px; 
+    overflow-y: auto; 
+    display: none; /* Gestito dal JS */
+}
+
+/* Stile per i singoli risultati dello scanner */
+#resultsList {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: white !important;
+    z-index: 99999 !important; /* Valore altissimo */
+    display: none;
+    border: 2px solid #003366;
+    color: black !important;
+}
+
+.result-item {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+}
+
+.result-item:hover {
+    background: #f0f0f0;
+}
+
+#resultsList {
+    background: white !important;
+    color: black !important;
+    display: none; 
 }
