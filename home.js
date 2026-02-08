@@ -174,19 +174,35 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// Gestione scorrimento frecce
-const container = document.querySelector('.carousel-container');
-const prevBtn = document.querySelector('.prev');
-const nextBtn = document.querySelector('.next');
+// Sposta tutto dentro il DOMContentLoaded per sicurezza
+document.addEventListener('DOMContentLoaded', () => {
+    // ... (tuo codice esistente per scanner e hamburger) ...
 
-if (container && prevBtn && nextBtn) {
-    const scrollAmount = 320; // Larghezza della card + gap
+    const container = document.querySelector('.carousel-container');
+    const prevBtn = document.querySelector('.prev');
+    const nextBtn = document.querySelector('.next');
 
-    nextBtn.onclick = () => {
-        container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-    };
+    if (container && prevBtn && nextBtn) {
+        // Definiamo lo scorrimento in base alla larghezza di una card reale
+        // Se non trova la card, usa il valore di default 320
+        const getScrollAmount = () => {
+            const card = container.querySelector('.card, .carousel-item'); // usa la classe delle tue card
+            return card ? card.offsetWidth + 20 : 320; 
+        };
 
-    prevBtn.onclick = () => {
-        container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-    };
-}
+        nextBtn.onclick = (e) => {
+            e.preventDefault();
+            container.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
+        };
+
+        prevBtn.onclick = (e) => {
+            e.preventDefault();
+            container.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
+        };
+
+        // Debug per GitHub: vedi nella console se gli elementi vengono trovati
+        console.log("Carosello inizializzato:", { container, prevBtn, nextBtn });
+    } else {
+        console.error("Errore: Elementi del carosello non trovati nel DOM.");
+    }
+});
