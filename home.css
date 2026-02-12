@@ -178,7 +178,7 @@ h2 {
     padding: 12px 25px;
     font-size: 16px;
     border-radius: 30px;
-    border: 2px solid #ccc;
+    border: 2px solid #ffffff;
     outline: none;
 }
 
@@ -187,9 +187,9 @@ h2 {
     top: 100%;
     left: 0;
     width: 100%;
-    background: white;
+    background:#003366;
     display: none;
-    border: 1px solid #003366;
+    border: 1px solid #ffcc00;
     border-radius: 0 0 15px 15px;
     max-height: 300px;
     overflow-y: auto;
