@@ -1,269 +1,155 @@
-header {
-    background: #003366;/* sfondo blu scuro */
-    color: white;/* testo bianco */
-    border: 0px 0px;/* spazio interno */
-    text-align: center;
-    margin: 0%;
-    top: 0px;/* distanza dall’alto */
-    width: 100%;/* larghezza completa */
-    padding-bottom: 20px;
-    
-}
-body {
-    font-family: 'Times New Roman', Times, serif;/* carattere serif */
-    line-height: 1.6;/* altezza della linea */
-    margin: 0;/* margine zero */
-    padding: 0;/* padding zero */
-    background:white;
-    color: #222;/* colore del testo scuro */
-
-}
-#top-right-btn {
-    position: absolute;/* posizione assoluta */
-    top: 50px;
-    left: 20px;  /* distanza da sinistra */
-    padding: 10px 20px;/* spazio interno */
-    font-size: 16px;/* dimensione del testo */
-}
-#center2 {
-    position: absolute;
-    top: 30%;    /* distanza dall’alto */
-    left: 50%;   /* distanza da sinistra */
-    padding: 10px 20px;
-    font-size: 16px;
-}
-#center {
-    position: absolute;
-    top: 30%;    /* distanza dall’alto */
-    left: 25%;   /* distanza da sinistra */
-    padding: 10px 20px;
-    font-size: 16px;
-}
-
-header button {
-    padding: 10px 16px;
-    font-size: 16px;
-}
-h1 {
-    margin-top: 1; /* Rimuove lo spazio extra sopra il titolo */
-    position: center; /* Posizione centrale */
-    text-align: center; /* Centra il testo orizzontalmente */
-}
-
-p {
-    font-size: 20px;
-    color: #ffffff;
-    text-align: center; /* Se vuoi centrare anche il paragrafo come il titolo */
-}
-
-
-.container {
-    display: flex;
-    height: 100vh;
-}
-
-
-
-.box{
-    display: none;
-    padding: 20px;
-}
-
-.content {
-    flex: 1;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start; /* Allinea il contenuto in alto */
-    align-items: center;         /* Centra il testo orizzontalmente */
-}
-/*carosello*/
-/* --- AGGIUNGI QUESTO PER RIMETTERLE IN RIGA --- */
-
-.carousel-container {
-    width: 100%;
-    /* Cambia da hidden a auto per permettere il movimento JS */
-    overflow-x: auto; 
-    display: flex;
-    scroll-behavior: smooth;
-    
-    /* Nascondi la barra dello scroll brutta visivamente */
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE/Edge */
-}
-
-.carousel-container::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera */
-}
-
-.cardrow {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap; /* Impedisce che vadano a capo */
-    gap: 20px;
-    padding: 20px;
-}
-/* Modifica leggermente la tua .card esistente per sicurezza */
-.card {
-    position: relative; 
-    width: 250px;       
-    min-width: 250px;   /* Fondamentale: impedisce alle card di schiacciarsi */
-    aspect-ratio: 1 / 1; 
-    border-radius: 15px;
-    overflow: hidden;
-    flex: 0 0 auto;     /* Impedisce al browser di ridimensionare le card */
-}
-
-/* ---------------------------------------------- */
-
-
-/* Contenitore principale: serve a centrare tutto il blocco carosello + frecce */
-.carousel-wrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center; /* Centra orizzontalmente */
-    width: 90%;
-    max-width: 1200px;
-    margin: 50px auto; /* Centra il wrapper nella pagina e dà spazio dall'header */
-    z-index: 1; /* Assicura che non finisca sotto altri elementi */
-}
-
-/* La card deve essere il riferimento per il testo */
-.card {
-    position: relative; 
-    width: 300px;       /* Regola la grandezza qui */
-    min-width: 300px;   /* Impedisce che si rimpiccioliscano */
-    aspect-ratio: 1 / 1; 
-    border-radius: 15px;
-    overflow: hidden;
-    flex: 0 0 auto;
-}
-
-.card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Evita che le foto si deformino */
-}
-
-/* L'overlay che contiene il testo */
-.overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.4); /* Scurisce l'immagine per far leggere il bianco */
-    display: flex;
-    align-items: center;     /* Centra verticalmente */
-    justify-content: center;  /* Centra orizzontalmente */
-    padding: 10px;
+/* --- RESET E STILI GENERALI --- */
+* {
     box-sizing: border-box;
 }
 
-.overlay h2 {
-    color: white;
+body {
+    font-family: 'Times New Roman', Times, serif;
+    line-height: 1.6;
     margin: 0;
-    font-size: 1.2rem;
+    padding: 0;
+    background: #f4f4f4;
+    color: #222;
+    overflow-x: hidden;
+}
+
+header {
+    background: #00276b;
+    color: white;
+    padding: 80px 20px 40px 20px;
     text-align: center;
-    text-transform: uppercase; /* Se vuoi l'effetto tutto maiuscolo come in foto */
-    letter-spacing: 1px;
+    position: relative;
 }
 
-.card:hover .overlay {
-    background: rgba(0, 0, 0, 0.2); /* Si schiarisce al passaggio del mouse */
+/* Titolo centrale sistemato */
+h1 {
+    margin: 0;
+    font-size: 2rem;
 }
 
-.card:hover img {
-    transform: scale(1.1); /* Leggero zoom della foto */
-    transition: transform 0.5s ease;
+h2 {
+    text-align: center;
+    margin-top: 40px;
+    color: #003366;
 }
 
-/* menu a panino */
+/* --- LOGO E LOGOUT --- */
+.logo-container {
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    z-index: 1002;
+}
+
+.header-logo {
+    max-width: 200px; /* Ridotto leggermente per bilanciare l'header */
+    height: auto;
+    background: transparent;
+    display: block;
+}
+
+#top-right-btn {
+    position: absolute;
+    top: 15px;
+    right: 70px; /* Distanza dall'hamburger */
+    padding: 8px 16px;
+    font-size: 14px;
+    background: #ffcc00;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #003366;
+    transition: background 0.3s;
+}
+
+#top-right-btn:hover {
+    background: #e6b800;
+}
+
+/* --- MENU HAMBURGER --- */
 .hamburger {
-  width: 30px;
-  height: 25px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  cursor: pointer;
-  right: 20px;
-  top: 55px;
-  position: fixed; /* Così ti segue mentre scorri */
-  z-index: 1001;   /* Deve essere più alto del 100 della menu-screen */
+    width: 30px;
+    height: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    position: fixed;
+    right: 20px;
+    top: 25px;
+    z-index: 2000;
+    background: transparent;
+    border: none;
+    padding: 0;
 }
 
 .hamburger span {
-  display: block;
-  height: 4px;
-  width: 100%;
-  background-color: #fffdfd; /* Colore delle linee */
-  border-radius: 10px;
-  transition: all 0.3s ease-in-out;
-  
+    display: block;
+    height: 4px;
+    width: 100%;
+    background-color: #ffcc00;
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
 }
 
-
-/* Quando il menu è aperto... */
 .hamburger.open span:nth-child(1) {
-  transform: translateY(10px) rotate(45deg);
+    transform: translateY(10px) rotate(45deg);
+    background-color: white;
 }
 
 .hamburger.open span:nth-child(2) {
-  opacity: 0; /* La linea centrale sparisce */
+    opacity: 0;
+    transform: translateX(-10px);
 }
 
 .hamburger.open span:nth-child(3) {
-  transform: translateY(-11px) rotate(-45deg);
+    transform: translateY(-10px) rotate(-45deg);
+    background-color: white;
 }
 
-/* Schermata che copre tutto il sito */
+/* --- MENU SCREEN --- */
 .menu-screen {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #003366; /* Stesso blu del tuo header */
-    z-index: 100; /* Sopra a tutto */
+    background-color: rgba(0, 39, 107, 0.98);
+    z-index: 1500;
     display: flex;
     align-items: center;
     justify-content: center;
-    
-    /* Inizialmente nascosto */
     opacity: 0;
     visibility: hidden;
     transition: all 0.4s ease-in-out;
 }
 
-/* Quando aggiungiamo la classe .open con JS */
 .menu-screen.open {
     opacity: 1;
     visibility: visible;
 }
 
-/* Griglia a colonne */
 .menu-columns {
     display: flex;
     width: 80%;
     justify-content: space-around;
-}
-
-.menu-col {
-    display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    text-align: center;
 }
 
 .menu-col h3 {
-    color: #ffcc00; /* Un colore di contrasto */
+    color: #ffcc00;
+    border-bottom: 2px solid white;
     margin-bottom: 20px;
-    border-bottom: 1px solid white;
+    padding-bottom: 5px;
 }
 
 .menu-col a {
     color: white;
     text-decoration: none;
     font-size: 1.5rem;
+    display: block;
     margin-bottom: 10px;
     transition: color 0.3s;
 }
@@ -272,121 +158,124 @@ p {
     color: #ffcc00;
 }
 
-/* Contenitore della ricerca per centrarlo nell'header */
+/* --- RICERCA --- */
 .search-wrapper {
     display: flex;
     justify-content: center;
     width: 100%;
-    margin-top: 15px;
+    margin-top: 20px;
 }
 
-/* Contenitore della ricerca: aumentiamo il max-width */
-.search-container { 
-    position: relative; 
-    width: 100%;          /* Usa quasi tutta la larghezza disponibile */
-    max-width: 800px;    /* Prima era 500px, ora è molto più larga */
-    z-index: 2005; 
-    margin: 0 auto;      /* Assicura la centratura */
+.search-container {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    z-index: 1001;
 }
 
-/* Stile dell'input: lo rendiamo più alto e spazioso */
 #searchInput {
     width: 100%;
-    padding: 15px 25px;  /* Aumentato il padding interno */
-    font-size: 18px;     /* Testo leggermente più grande */
-    border-radius: 30px; /* Angoli più arrotondati (stile moderno) */
+    padding: 12px 25px;
+    font-size: 16px;
+    border-radius: 30px;
     border: 2px solid #ccc;
     outline: none;
-    transition: all 0.3s;
 }
 
-/* Feedback quando ci clicchi sopra */
-#searchInput:focus {
-    border-color: #ffcc00; /* Diventa gialla quando scrivi */
-    box-shadow: 0 0 10px rgba(255, 204, 0, 0.3);
-}
-
-#resultsList { 
-    position: absolute; 
-    top: 100%; 
-    left: 0;
-    width: 100%; 
-    background: white; 
-    border: 2px solid #ccc;
-    border-top: none; /* Unisce l'input alla lista */
-    border-radius: 0 0 8px 8px; 
-    box-shadow: 0 8px 16px rgba(0,0,0,0.4); 
-    max-height: 400px; 
-    overflow-y: auto; 
-    display: none; /* Gestito dal JS */
-}
-
-/* Stile per i singoli risultati dello scanner */
 #resultsList {
     position: absolute;
     top: 100%;
     left: 0;
     width: 100%;
-    background: white !important;
-    z-index: 99999 !important; /* Valore altissimo */
+    background: white;
     display: none;
-    border: 2px solid #003366;
-    color: black !important;
+    border: 1px solid #003366;
+    border-radius: 0 0 15px 15px;
+    max-height: 300px;
+    overflow-y: auto;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
-.result-item {
-    padding: 10px;
-    border-bottom: 1px solid #eee;
-    cursor: pointer;
+/* --- CAROSELLO (FIXATO PER JS) --- */
+.carousel-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 10px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-.result-item:hover {
-    background: #f0f0f0;
-}
-
-header {
-    background: #003366;
-    color: white;
-    text-align: center;
-    margin: 0;
-    padding: 20px 0;
+.carousel-container {
     width: 100%;
-    position: relative; /* Cambiato da absolute/fixed per non sovrapporsi male al carosello */
-    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    overflow: hidden; /* Nasconde ciò che esce dai bordi */
 }
 
-h1 {
+.cardrow {
+    display: flex;
+    gap: 20px;
+    overflow-x: hidden; /* Fondamentale: impedisce lo scroll manuale che rompe il JS */
+    scroll-behavior: smooth;
+    padding: 20px 10px;
+}
+
+.card {
+    min-width: 280px; /* Larghezza fissa per calcoli precisi del JS */
+    flex: 0 0 auto;  /* Impedisce alle card di rimpicciolirsi */
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+    background: white;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.overlay {
+    position: absolute;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    width: 100%;
+    padding: 15px;
+    text-align: center;
+}
+
+.overlay h2 {
+    color: white;
     margin: 0;
-    font-family: 'Arial Black', Gadget, sans-serif; /* Un font più moderno per l'aerospazio */
-    letter-spacing: 2px;
+    font-size: 1.1rem;
+    text-align: center;
 }
 
 .nav-btn {
-    position: absolute;
-    background: rgba(0, 51, 102, 0.9);
-    color: white;
+    font-size: 2.5rem;
+    background: none;
     border: none;
-    font-size: 2rem;
-    padding: 10px 18px;
     cursor: pointer;
-    border-radius: 50%;
-    z-index: 100; /* Valore alto per essere sopra le card */
-    transition: 0.3s;
-    /* Centratura verticale perfetta */
-    top: 50%;
-    transform: translateY(-50%); 
+    color: #003366;
+    padding: 15px;
+    transition: color 0.3s, transform 0.2s;
+    z-index: 10;
 }
 
 .nav-btn:hover {
-    background: #ffcc00;
-    color: #003366;
+    color: #ffcc00;
+    transform: scale(1.2);
 }
 
-.prev { left: -20px; } 
-.next { right: -20px; }
-
-/* Responsive: se lo schermo è piccolo, sposta le frecce dentro */
-@media (max-width: 768px) {
-    .prev { left: 5px; }
-    .next { right: 5px; }
+/* --- VIDEO SECTION --- */
+.video-section {
+    padding: 40px 20px;
+    background: #fff;
+    text-align: center;
 }

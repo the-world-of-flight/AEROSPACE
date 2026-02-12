@@ -6,11 +6,16 @@
     <title>Maxwell - The World of Flight</title>
     <link rel="stylesheet" href="home.css">
     <link rel="icon" type="image/png" href="favicon.jpeg">
-
+</head>
 <body>
+
     <header>
+        <div class="logo-container">
+            <img src="Gemini_Generated_Image_ho830uho830uho83.png" alt="Logo Maxwell" class="header-logo">
+        </div>
+
         <div class="content">
-            <h1>Maxwell: The World of Flight</h1>
+            <h1>MAXWELL IL MONDO DEL VOLO</h1>
             
             <div class="hamburger" id="hamburger">
                 <span></span>
@@ -19,6 +24,7 @@
             </div>
 
             <div class="menu-screen" id="menuScreen">
+                <button id="top-right-btn" onclick="logout()">Logout</button>
                 <div class="menu-columns">
                     <div class="menu-col">
                         <h3>Informazioni</h3>
@@ -47,12 +53,10 @@
                     <div id="resultsList" class="results-dropdown"></div>
                 </div>
             </div>
-
-            <button id="top-right-btn" onclick="logout()">Logout</button>
         </div>
     </header>
 
-    <div class="carousel-wrapper">
+<div class="carousel-wrapper">
         <button class="nav-btn prev" id="prevBtn">&#10094;</button>
         
         <div class="carousel-container">
@@ -80,25 +84,20 @@
 
                 <div class="card">
                     <a href="olla2.html">
-                        <img src="eroi del cielo.jpeg" alt="Area Riservata">
+                        <img src="eroi del cielo.jpeg" alt="Eroi del Cielo">
                         <div class="overlay"><h2>Eroi del Cielo</h2></div>
                     </a>
                 </div>
-            </div>
-        </div>
-
-        <button class="nav-btn next" id="nextBtn">&#10095;</button>
+            </div> </div> <button class="nav-btn next" id="nextBtn">&#10095;</button>
     </div>
 
     <section class="video-section">
         <div class="content">
             <h2 class="section-title">Video Correlati</h2>
-            </div>
+        </div>
     </section>
 
-
-
-    <script src="home.js"></script>
+<script src="home.js"></script>
 
 </body>
 </html>

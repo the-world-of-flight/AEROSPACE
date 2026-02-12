@@ -1,51 +1,3 @@
-async function avviaScanner() {
-    // 1. Controllo Cache: se abbiamo già i dati, non fare NULLA
-    const cache = sessionStorage.getItem("indiceRicerca");
-    if (cache) {
-        indiceAutomatico = JSON.parse(cache);
-        return;
-    }
-
-    // 2. Lista pagine
-    const pagine = ["olla.html", "index.html", "maffucci.html", "olla2.html", "calo.html"];
-    
-    // 3. Scansione Sequenziale (una alla volta)
-    for (const url of pagine) {
-        try {
-            // Saltiamo la scansione se siamo già sulla pagina stessa per evitare loop
-            if (window.location.pathname.includes(url)) continue;
-
-            const response = await fetch(url);
-            if (!response.ok) continue;
-            
-            const htmlText = await response.text();
-            
-            // Rimuoviamo il codice di Live Server dal testo scaricato prima di processarlo
-            // Questo blocca la creazione di WebSocket fantasma
-            const pulito = htmlText.replace(/<script\b[^>]*>([\s\S]*?)<\/script>/gim, "");
-            
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(pulito, 'text/html');
-            const sezioni = doc.querySelectorAll('section[id]');
-            
-            sezioni.forEach(s => {
-                const titolo = s.querySelector('h2, .accordion')?.innerText.trim() || "Argomento";
-                const linkCompleto = url + "#" + s.id;
-                
-                if (!indiceAutomatico.some(item => item.url === linkCompleto)) {
-                    indiceAutomatico.push({
-                        titolo: titolo,
-                        testo: s.innerText.toLowerCase(),
-                        url: linkCompleto
-                    });
-                }
-            });
-        } catch (e) {
-            console.warn("Errore silenzioso su " + url);
-        }
-    }
-    sessionStorage.setItem("indiceRicerca", JSON.stringify(indiceAutomatico));
-}
 // --- 1. PROTEZIONE E LOGOUT ---
 (function() {
     if (localStorage.getItem("loggedIn") !== "true") {
@@ -59,32 +11,35 @@ function logout() {
     window.location.href = "login.html";
 }
 
-// --- 2. LOGICA SCANNER (Ottimizzata per evitare ERR_INSUFFICIENT_RESOURCES) ---
+// --- 2. SCANNER OTTIMIZZATO ---
 let indiceAutomatico = [];
 
 async function avviaScanner() {
     const cache = sessionStorage.getItem("indiceRicerca");
     if (cache) {
         indiceAutomatico = JSON.parse(cache);
-        console.log("Ricerca caricata dalla cache di sessione.");
         return;
     }
 
     const pagine = ["olla.html", "index.html", "maffucci.html", "olla2.html", "calo.html"];
-    console.log("Avvio scansione intelligente delle pagine...");
-
-    // Eseguiamo le richieste una alla volta (sequenziali) per non bloccare il browser
+    
     for (const url of pagine) {
         try {
-            const response = await fetch(url, { priority: 'low' });
-            if (!response.ok) continue;
-            
-            const htmlText = await response.text();
-            const doc = new DOMParser().parseFromString(htmlText, 'text/html');
+            // Se siamo già sulla pagina, usiamo il documento attuale senza fetch
+            let doc;
+            if (window.location.pathname.includes(url)) {
+                doc = document;
+            } else {
+                const response = await fetch(url, { priority: 'low' });
+                if (!response.ok) continue;
+                const htmlText = await response.text();
+                const pulito = htmlText.replace(/<script\b[^>]*>([\s\S]*?)<\/script>/gim, "");
+                doc = new DOMParser().parseFromString(pulito, 'text/html');
+            }
+
             const sezioni = doc.querySelectorAll('section[id]');
-            
             sezioni.forEach(s => {
-                const titolo = s.querySelector('h2, .accordion')?.innerText.trim() || "Argomento";
+                const titolo = s.querySelector('h2, .accordion, .section-title')?.innerText.trim() || "Argomento";
                 const linkCompleto = url + "#" + s.id;
                 
                 if (!indiceAutomatico.some(item => item.url === linkCompleto)) {
@@ -96,13 +51,13 @@ async function avviaScanner() {
                 }
             });
         } catch (e) {
-            console.warn(`Impossibile indicizzare ${url}:`, e);
+            console.warn("Errore scansione:", url, e);
         }
     }
     sessionStorage.setItem("indiceRicerca", JSON.stringify(indiceAutomatico));
 }
 
-// --- 3. FUNZIONE RICERCA ---
+// --- 3. RICERCA ---
 function eseguiRicerca() {
     const input = document.getElementById('searchInput');
     const list = document.getElementById('resultsList');
@@ -125,6 +80,8 @@ function eseguiRicerca() {
             const div = document.createElement('div');
             div.className = 'result-item';
             div.innerHTML = `<strong>${item.titolo}</strong>`;
+            div.style.padding = "10px"; // Assicuriamoci che sia cliccabile
+            div.style.cursor = "pointer";
             div.onclick = () => window.location.href = item.url;
             list.appendChild(div);
         });
@@ -133,76 +90,49 @@ function eseguiRicerca() {
     }
 }
 
-// --- 4. INIZIALIZZAZIONE DOM ---
+// --- 4. INIZIALIZZAZIONE ---
 document.addEventListener('DOMContentLoaded', () => {
-    // Avvia scanner e componenti
     avviaScanner();
 
     // Menu Hamburger
-    const hamburger = document.getElementById('hamburger');
-    const menuScreen = document.getElementById('menuScreen');
-    if (hamburger && menuScreen) {
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('open');
-            menuScreen.classList.toggle('open');
-        });
+    const hb = document.getElementById('hamburger');
+    const ms = document.getElementById('menuScreen');
+    if (hb && ms) {
+        hb.onclick = () => {
+            hb.classList.toggle('open');
+            ms.classList.toggle('open');
+        };
     }
 
-    // Input Ricerca
-    const inputBar = document.getElementById('searchInput');
-    if (inputBar) {
-        inputBar.addEventListener('input', eseguiRicerca);
-    }
-    
-    // Gestione automatica Hash (per aprire accordion da link esterni)
-    if (window.location.hash) {
-        setTimeout(() => {
-            const target = document.querySelector(window.location.hash);
-            if (target) {
-                const btn = target.querySelector('.accordion');
-                if (btn) {
-                    btn.classList.add("active");
-                    const panel = btn.nextElementSibling;
-                    if (panel) {
-                        panel.style.display = "block";
-                        panel.style.maxHeight = panel.scrollHeight + "px";
-                    }
-                }
-                target.scrollIntoView({ behavior: 'smooth' });
+    // Ricerca
+    const searchBar = document.getElementById('searchInput');
+    if (searchBar) searchBar.oninput = eseguiRicerca;
+
+    // --- CAROSELLO INFINITO (LOGICA FIXATA) ---
+    // Usiamo cardrow perché nel tuo CSS è quello con overflow-x: auto
+    const slider = document.querySelector('.cardrow');
+    const btnP = document.getElementById('prevBtn');
+    const btnN = document.getElementById('nextBtn');
+
+    if (slider && btnP && btnN) {
+        const step = 300; 
+
+        btnN.onclick = () => {
+            const isAtEnd = slider.scrollLeft + slider.offsetWidth >= slider.scrollWidth - 10;
+            if (isAtEnd) {
+                slider.scrollTo({ left: 0, behavior: 'smooth' });
+            } else {
+                slider.scrollBy({ left: step, behavior: 'smooth' });
             }
-        }, 800);
-    }
-});
-
-// Sposta tutto dentro il DOMContentLoaded per sicurezza
-document.addEventListener('DOMContentLoaded', () => {
-    // ... (tuo codice esistente per scanner e hamburger) ...
-
-    const container = document.querySelector('.carousel-container');
-    const prevBtn = document.querySelector('.prev');
-    const nextBtn = document.querySelector('.next');
-
-    if (container && prevBtn && nextBtn) {
-        // Definiamo lo scorrimento in base alla larghezza di una card reale
-        // Se non trova la card, usa il valore di default 320
-        const getScrollAmount = () => {
-            const card = container.querySelector('.card, .carousel-item'); // usa la classe delle tue card
-            return card ? card.offsetWidth + 20 : 320; 
         };
 
-        nextBtn.onclick = (e) => {
-            e.preventDefault();
-            container.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
+        btnP.onclick = () => {
+            const isAtStart = slider.scrollLeft <= 10;
+            if (isAtStart) {
+                slider.scrollTo({ left: slider.scrollWidth, behavior: 'smooth' });
+            } else {
+                slider.scrollBy({ left: -step, behavior: 'smooth' });
+            }
         };
-
-        prevBtn.onclick = (e) => {
-            e.preventDefault();
-            container.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
-        };
-
-        // Debug per GitHub: vedi nella console se gli elementi vengono trovati
-        console.log("Carosello inizializzato:", { container, prevBtn, nextBtn });
-    } else {
-        console.error("Errore: Elementi del carosello non trovati nel DOM.");
     }
 });
