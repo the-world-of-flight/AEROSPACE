@@ -1,16 +1,17 @@
 #top-right-btn {
-    position: absolute;/* posizione assoluta */
-    top: 60px;    /* distanza dall’alto */
-    left: 20px;  /* distanza da sinistra */
-    padding: 10px 20px;/* spazio interno */
-    font-size: 16px;/* dimensione del testo */
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 8px 16px;
+    font-size: 16px;
+    z-index: 1600;
 }
 body {
     font-family: 'Times New Roman', Times, serif;/* carattere serif */
     line-height: 1.6;/* altezza della linea */
     margin: 0;/* margine zero */
     padding: 0;/* padding zero */
-    background: #f4f4f4;/* sfondo grigio chiaro */
+    background: linear-gradient(to bottom, #4facfe 0%, #00f2fe 100%); /* cielo come home */
     color: #222;/* colore del testo scuro */
 }
 
@@ -298,3 +299,125 @@ footer {
     color: black !important;
     display: none; 
 }
+
+/* Flyby plane + tow animation */
+body.flyby {
+    overflow-x: hidden;
+}
+
+body.flyby header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1500;
+}
+
+.home-fly-btn {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    z-index: 1601;
+    padding: 8px 14px;
+    border-radius: 8px;
+    background: #ffcc00;
+    color: #00276b;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.home-fly-btn:hover {
+    background: #ffd633;
+}
+
+body.flyby main {
+    margin-top: 0;
+}
+
+.flyby-plane {
+    position: absolute;
+    top: 46vh;
+    left: 50%;
+    transform: translate(-50%, -50%) scaleX(-1);
+    width: 180px;
+    height: auto;
+    z-index: 1400;
+    pointer-events: none;
+    animation: flybyTow 4.2s ease-out forwards;
+}
+
+.tow-cargo {
+    position: relative;
+    padding-top: 170px;
+    transform: translateX(-120vw);
+    animation: towCargo 4.2s ease-out forwards;
+}
+
+.tow-cargo main {
+    position: relative;
+}
+
+.tow-cable {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: #111;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 1390;
+    transform-origin: 0 50%;
+}
+
+@keyframes flybyTow {
+    0% { left: -18vw; opacity: 1; }
+    100% { left: 86vw; opacity: 1; }
+}
+
+@keyframes towCargo {
+    0% { transform: translateX(-120vw); }
+    100% { transform: translateX(0); }
+}
+
+@media (max-width: 700px) {
+    .flyby-plane {
+        width: 132px;
+    }
+
+    .tow-cargo {
+        padding-top: 145px;
+    }
+
+}
+
+/* cielo animato simile alla home */
+.sky-view {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(to bottom, #4facfe 0%, #00f2fe 100%);
+    z-index: -1;
+}
+
+.cloud {
+    position: absolute;
+    right: -150px;
+    background: white;
+    border-radius: 50px;
+    opacity: 0.85;
+    animation: moveClouds linear infinite;
+}
+
+@keyframes moveClouds {
+    from { right: -150px; }
+    to { right: 110%; }
+}
+
+
+
+
+
+
+
+
+

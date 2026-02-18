@@ -11,7 +11,7 @@ function logout() {
     window.location.href = "login.html";
 }
 
-// --- 2. SCANNER OTTIMIZZATO ---
+// --- 2. SCANNER OTTIMIZZATO PER RICERCA ---
 let indiceAutomatico = [];
 
 async function avviaScanner() {
@@ -25,7 +25,6 @@ async function avviaScanner() {
     
     for (const url of pagine) {
         try {
-            // Se siamo già sulla pagina, usiamo il documento attuale senza fetch
             let doc;
             if (window.location.pathname.includes(url)) {
                 doc = document;
@@ -57,7 +56,7 @@ async function avviaScanner() {
     sessionStorage.setItem("indiceRicerca", JSON.stringify(indiceAutomatico));
 }
 
-// --- 3. RICERCA ---
+// --- 3. LOGICA RICERCA ---
 function eseguiRicerca() {
     const input = document.getElementById('searchInput');
     const list = document.getElementById('resultsList');
@@ -80,7 +79,7 @@ function eseguiRicerca() {
             const div = document.createElement('div');
             div.className = 'result-item';
             div.innerHTML = `<strong>${item.titolo}</strong>`;
-            div.style.padding = "10px"; // Assicuriamoci che sia cliccabile
+            div.style.padding = "10px";
             div.style.cursor = "pointer";
             div.onclick = () => window.location.href = item.url;
             list.appendChild(div);
@@ -90,11 +89,12 @@ function eseguiRicerca() {
     }
 }
 
-// --- 4. INIZIALIZZAZIONE ---
+// --- 4. INIZIALIZZAZIONE (DOM CONTENT LOADED) ---
 document.addEventListener('DOMContentLoaded', () => {
+    // Avvia lo scanner per la ricerca
     avviaScanner();
 
-    // Menu Hamburger
+    // Gestione Menu Hamburger
     const hb = document.getElementById('hamburger');
     const ms = document.getElementById('menuScreen');
     if (hb && ms) {
@@ -104,35 +104,45 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
 
-    // Ricerca
+    // Gestione Barra di Ricerca
     const searchBar = document.getElementById('searchInput');
-    if (searchBar) searchBar.oninput = eseguiRicerca;
-
-    // --- CAROSELLO INFINITO (LOGICA FIXATA) ---
-    // Usiamo cardrow perché nel tuo CSS è quello con overflow-x: auto
-    const slider = document.querySelector('.cardrow');
-    const btnP = document.getElementById('prevBtn');
-    const btnN = document.getElementById('nextBtn');
-
-    if (slider && btnP && btnN) {
-        const step = 300; 
-
-        btnN.onclick = () => {
-            const isAtEnd = slider.scrollLeft + slider.offsetWidth >= slider.scrollWidth - 10;
-            if (isAtEnd) {
-                slider.scrollTo({ left: 0, behavior: 'smooth' });
-            } else {
-                slider.scrollBy({ left: step, behavior: 'smooth' });
-            }
-        };
-
-        btnP.onclick = () => {
-            const isAtStart = slider.scrollLeft <= 10;
-            if (isAtStart) {
-                slider.scrollTo({ left: slider.scrollWidth, behavior: 'smooth' });
-            } else {
-                slider.scrollBy({ left: -step, behavior: 'smooth' });
-            }
-        };
+    if (searchBar) {
+        searchBar.oninput = eseguiRicerca;
     }
+
+    // --- LOGICA FINESTRINI AEREO ---
+    const windows = document.querySelectorAll('.window-frame');
+    const aereoBox = document.querySelector('.aereo-box');
+    let isNavigating = false;
+
+    windows.forEach(win => {
+        win.addEventListener('click', (e) => {
+            if (isNavigating) return;
+
+            const isOpen = win.classList.contains('is-open');
+            const href = win.dataset.href;
+            const clickedShutter = e.target.closest('.shutter');
+            const clickedBg = e.target.closest('.window-bg');
+
+            if (!isOpen) {
+                win.classList.add('is-open');
+                return;
+            }
+
+            if (clickedShutter) {
+                win.classList.remove('is-open');
+                return;
+            }
+
+            if (!clickedShutter && href) {
+                isNavigating = true;
+                windows.forEach(w => w.classList.remove('is-open'));
+                if (aereoBox) aereoBox.classList.add('exit');
+
+                setTimeout(() => {
+                    window.location.href = href;
+                }, 2000);
+            }
+        });
+    });
 });

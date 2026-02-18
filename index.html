@@ -5,99 +5,137 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maxwell - The World of Flight</title>
     <link rel="stylesheet" href="home.css">
-    <link rel="icon" type="image/png" href="favicon.jpeg">
 </head>
 <body>
 
+    <div class="sky-view">
+        <div class="cloud" style="top: 20%; width: 100px; height: 30px; animation-duration: 10s;"></div>
+        <div class="cloud" style="top: 60%; width: 150px; height: 40px; animation-duration: 20s;"></div>
+    </div>
+
+    <div class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+    </div>
+
     <header>
         <div class="logo-container">
-            <img src="Gemini_Generated_Image_ho830uho830uho83.png" alt="Logo Maxwell" class="header-logo">
+            <img src="Gemini_Generated_Image_ho830uho830uho83.png" class="header-logo" alt="Logo">
         </div>
 
-        <div class="content">
-            <h1>MAXWELL IL MONDO DEL VOLO</h1>
-            
-            <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+        <h1>MAXWELL IL MONDO DEL VOLO</h1>
 
-            <div class="menu-screen" id="menuScreen">
-                <button id="top-right-btn" onclick="logout()">Logout</button>
-                <div class="menu-columns">
-                    <div class="menu-col">
-                        <h3>Informazioni</h3>
-                        <a href="index.html">Home</a>
-                        <a href="fonti.html">Fonti</a>
-                        <a href="chisiamo.html">Chi siamo</a>
-                    </div>
-                    <div class="menu-col">
-                        <h3>Argomenti</h3>
-                        <a href="olla.html">Interdisciplinarietà</a>
-                        <a href="calo.html">Leggenda e Progresso</a>
-                        <a href="maffucci.html">Post-eroismo</a>
-                        <a href="olla2.html">Eroi del Cielo</a>
-                    </div>
-                    <div class="menu-col">
-                        <h3>Extra</h3>
-                        <a href="#">Privacy</a>
-                        <a href="#">Credits</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="search-wrapper">
-                <div class="search-container">
-                    <input type="text" id="searchInput" placeholder="Cerca un eroe, una data o un concetto...">
-                    <div id="resultsList" class="results-dropdown"></div>
-                </div>
+        <div class="search-wrapper">
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Cerca un eroe...">
+                <div id="resultsList"></div>
             </div>
         </div>
     </header>
 
-<div class="carousel-wrapper">
-        <button class="nav-btn prev" id="prevBtn">&#10094;</button>
-        
-        <div class="carousel-container">
-            <div class="cardrow">
-                <div class="card">
-                    <a href="olla.html">
-                        <img src="WhatsApp Image 2026-01-29 at 13.21.42.jpeg" alt="Interdisciplinarietà">
-                        <div class="overlay"><h2>Interdisciplinarietà</h2></div>
-                    </a>
-                </div>
+    <div class="menu-screen" id="menuScreen">
+        <div class="menu-columns">
+            <div class="menu-col">
+                <h3>Informazioni</h3>
+                <a href="index.html">Home</a>
+                <a href="fonti.html">Fonti</a>
+                <a href="chisiamo.html">Chi siamo</a>
+            </div>
 
-                <div class="card">
-                    <a href="calo.html">
-                        <img src="comando areonautica.png" alt="Leggenda e Progresso">
-                        <div class="overlay"><h2>Leggenda e Progresso</h2></div>
-                    </a>
-                </div>
+            <div class="menu-col">
+                <h3>Argomenti trattati</h3>
+                <a href="olla.html">Interdisciplinarita dell'aerospazio</a>
+                <a href="calo.html">Dalla leggenda al progresso</a>
+                <a href="maffucci.html">Post-eroismo</a>
+            </div>
 
-                <div class="card">
-                    <a href="maffucci.html">
-                        <img src="post eroismo.jpg" alt="Post-eroismo">
-                        <div class="overlay"><h2>Post-eroismo</h2></div>
-                    </a>
-                </div>
-
-                <div class="card">
-                    <a href="olla2.html">
-                        <img src="eroi del cielo.jpeg" alt="Eroi del Cielo">
-                        <div class="overlay"><h2>Eroi del Cielo</h2></div>
-                    </a>
-                </div>
-            </div> </div> <button class="nav-btn next" id="nextBtn">&#10095;</button>
+            <div class="menu-col">
+                <h3>Account</h3>
+                <button class="menu-logout" onclick="logout()">Logout</button>
+            </div>
+        </div>
     </div>
 
-    <section class="video-section">
-        <div class="content">
-            <h2 class="section-title">Video Correlati</h2>
-        </div>
-    </section>
+    <div class="aereo-box">
+        <img src="aereo-ritagliato.png" class="aereo-img" alt="Aereo">
+        
+        <div class="windows-container">
 
-<script src="home.js"></script>
+            <div class="window-frame" data-href="calo.html">
+                <div class="sky-view window-bg" style="background-image: url('IMG_0272.jpeg'); background-size: cover; background-position: center;">
+                    <div class="window-content">
+                    </div>
+                </div>
+                <div class="shutter">
+                    <span class="shutter-title">Leggenda<br>e Progresso</span>
+                </div>
+            </div>
+
+            <div class="window-frame" data-href="maffucci.html">
+                <div class="sky-view window-bg">
+                    <div class="window-content">
+                        <img src="eroe2.jpg" onerror="this.style.display='none'">
+                    </div>
+                </div>
+                <div class="shutter">
+                    <span class="shutter-title">Gli eroi<br>del cielo</span>
+                </div>
+            </div>
+
+            <div class="window-frame" data-href="olla.html">
+                <div class="sky-view window-bg">
+                    <div class="window-content">
+                        <img src="eroe3.jpg" onerror="this.style.display='none'">
+                    </div>
+                </div>
+                <div class="shutter">
+                    <span class="shutter-title">Interdisciplinarietà</span>
+                </div>
+            </div>
+
+            <div class="window-frame" data-href="olla2.html">
+                <div class="sky-view window-bg">
+                    <div class="window-content">
+                        <img src="eroe4.jpg" onerror="this.style.display='none'">
+                    </div>
+                </div>
+                <div class="shutter">
+                    <span class="shutter-title">Gli eroi<br>nello spazio</span>
+                </div>
+            </div>
+
+            <div class="window-frame" data-href="sesta-generazione.html">
+                <div class="sky-view window-bg">
+                    <div class="window-content">
+                        <img src="eroe5.jpg" onerror="this.style.display='none'">
+                    </div>
+                </div>
+                <div class="shutter"></div>
+            </div>
+
+            <div class="window-frame" data-href="">
+                <div class="sky-view window-bg">
+                    <div class="window-content">
+                        <img src="eroe6.jpg" onerror="this.style.display='none'">
+                    </div>
+                </div>
+                <div class="shutter"></div>
+            </div>
+
+            <div class="window-frame" data-href="">
+                <div class="sky-view window-bg">
+                    <div class="window-content">
+                        <img src="eroe7.jpg" onerror="this.style.display='none'">
+                    </div>
+                </div>
+                <div class="shutter"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="home.js"></script>
 
 </body>
+
 </html>
+

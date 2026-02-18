@@ -1,161 +1,63 @@
-/* --- RESET E STILI GENERALI --- */
-* {
-    box-sizing: border-box;
-}
+/* --- RESET --- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-    font-family: 'Times New Roman', Times, serif;
-    line-height: 1.6;
-    margin: 0;
-    padding: 0;
-    background: #f4f4f4;
-    color: #222;
+    font-family: 'Segoe UI', sans-serif;
+    min-height: 100vh;
     overflow-x: hidden;
+    overflow-y: hidden;
 }
 
-header {
-    background: #00276b;
-    color: white;
-    padding: 80px 20px 40px 20px;
-    text-align: center;
-    position: relative;
-}
-
-/* Titolo centrale sistemato */
-h1 {
-    margin: 0;
-    font-size: 2rem;
-}
-
-h2 {
-    text-align: center;
-    margin-top: 40px;
-    color: #003366;
-}
-
-/* --- LOGO E LOGOUT --- */
-.logo-container {
-    position: absolute;
-    top: 15px;
-    left: 20px;
-    z-index: 1002;
-}
-
-.header-logo {
-    max-width: 200px; /* Ridotto leggermente per bilanciare l'header */
-    height: auto;
-    background: transparent;
-    display: block;
-}
-
-#top-right-btn {
-    position: absolute;
-    top: 15px;
-    right: 70px; /* Distanza dall'hamburger */
-    padding: 8px 16px;
-    font-size: 14px;
-    background: #ffcc00;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    color: #003366;
-    transition: background 0.3s;
-}
-
-#top-right-btn:hover {
-    background: #e6b800;
-}
-
-/* --- MENU HAMBURGER --- */
-.hamburger {
-    width: 30px;
-    height: 24px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    cursor: pointer;
-    position: fixed;
-    right: 20px;
-    top: 25px;
-    z-index: 2000;
-    background: transparent;
-    border: none;
-    padding: 0;
-}
-
-.hamburger span {
-    display: block;
-    height: 4px;
-    width: 100%;
-    background-color: #ffcc00;
-    border-radius: 10px;
-    transition: all 0.3s ease-in-out;
-}
-
-.hamburger.open span:nth-child(1) {
-    transform: translateY(10px) rotate(45deg);
-    background-color: white;
-}
-
-.hamburger.open span:nth-child(2) {
-    opacity: 0;
-    transform: translateX(-10px);
-}
-
-.hamburger.open span:nth-child(3) {
-    transform: translateY(-10px) rotate(-45deg);
-    background-color: white;
-}
-
-/* --- MENU SCREEN --- */
-.menu-screen {
+/* --- SFONDO CIELO (FISSO) --- */
+body > .sky-view {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 39, 107, 0.98);
-    z-index: 1500;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.4s ease-in-out;
+    background: linear-gradient(to bottom, #4facfe 0%, #00f2fe 100%);
+    z-index: -1;
 }
 
-.menu-screen.open {
-    opacity: 1;
-    visibility: visible;
+.cloud {
+    position: absolute;
+    right: -150px;
+    background: white;
+    border-radius: 50px;
+    animation: moveClouds linear infinite;
 }
 
-.menu-columns {
-    display: flex;
-    width: 80%;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    text-align: center;
+@keyframes moveClouds {
+    from { right: -150px; }
+    to { right: 110%; }
 }
 
-.menu-col h3 {
-    color: #ffcc00;
-    border-bottom: 2px solid white;
-    margin-bottom: 20px;
-    padding-bottom: 5px;
-}
-
-.menu-col a {
+/* --- HEADER --- */
+header {
+    background: #00276b;
     color: white;
-    text-decoration: none;
-    font-size: 1.5rem;
-    display: block;
-    margin-bottom: 10px;
-    transition: color 0.3s;
+    padding: 20px;
+    position: relative;
+    z-index: 1000;
+    text-align: center;
+    min-height: 180px;
 }
 
-.menu-col a:hover {
-    color: #ffcc00;
+.logo-container {
+    position: absolute;
+    top: 15px;
+    left: 20px;
+}
+
+.header-logo {
+    max-width: 150px;
+    height: auto;
+}
+
+h1 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    padding-top: 10px;
 }
 
 /* --- RICERCA --- */
@@ -163,22 +65,19 @@ h2 {
     display: flex;
     justify-content: center;
     width: 100%;
-    margin-top: 20px;
 }
 
 .search-container {
     position: relative;
     width: 100%;
-    max-width: 600px;
-    z-index: 1001;
+    max-width: 1000px;
 }
 
 #searchInput {
     width: 100%;
-    padding: 12px 25px;
-    font-size: 16px;
+    padding: 12px 20px;
     border-radius: 30px;
-    border: 2px solid #ffffff;
+    border: 2px solid #000;
     outline: none;
 }
 
@@ -187,95 +86,299 @@ h2 {
     top: 100%;
     left: 0;
     width: 100%;
-    background:#003366;
-    display: none;
-    border: 1px solid #ffcc00;
-    border-radius: 0 0 15px 15px;
-    max-height: 300px;
-    overflow-y: auto;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-}
-
-/* --- CAROSELLO (FIXATO PER JS) --- */
-.carousel-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 40px 10px;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.carousel-container {
-    width: 100%;
-    overflow: hidden; /* Nasconde ciò che esce dai bordi */
-}
-
-.cardrow {
-    display: flex;
-    gap: 20px;
-    overflow-x: hidden; /* Fondamentale: impedisce lo scroll manuale che rompe il JS */
-    scroll-behavior: smooth;
-    padding: 20px 10px;
-}
-
-.card {
-    min-width: 280px; /* Larghezza fissa per calcoli precisi del JS */
-    flex: 0 0 auto;  /* Impedisce alle card di rimpicciolirsi */
-    position: relative;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
-    transition: transform 0.3s;
     background: white;
+    border: 1px solid #ccc;
+    display: none;
+    z-index: 9999;
+    color: black;
+    text-align: left;
 }
 
-.card:hover {
-    transform: translateY(-5px);
-}
-
-.card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-}
-
-.overlay {
-    position: absolute;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.7);
-    color: white;
-    width: 100%;
-    padding: 15px;
-    text-align: center;
-}
-
-.overlay h2 {
-    color: white;
-    margin: 0;
-    font-size: 1.1rem;
-    text-align: center;
-}
-
-.nav-btn {
-    font-size: 2.5rem;
-    background: none;
-    border: none;
+/* --- HAMBURGER (FISSO IN ALTO A DESTRA) --- */
+.hamburger {
+    position: fixed;
+    top: 25px;
+    right: 25px;
+    width: 35px;
+    height: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     cursor: pointer;
-    color: #003366;
-    padding: 15px;
-    transition: color 0.3s, transform 0.2s;
+    z-index: 2100; /* Sopra tutto */
+}
+
+.hamburger span {
+    display: block;
+    height: 4px;
+    width: 100%;
+    background-color: #ffcc00;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+/* Animazione X quando aperto */
+.hamburger.open span:nth-child(1) { transform: translateY(10px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-10px) rotate(-45deg); }
+
+/* --- MENU SCREEN --- */
+.menu-screen {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 39, 107, 0.95);
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.menu-screen.open { visibility: visible; opacity: 1; }
+
+.menu-columns {
+    display: flex;
+    width: 80%;
+    justify-content: space-around;
+    gap: 32px;
+    flex-wrap: wrap;
+}
+
+.menu-col {
+    display: flex;
+    flex-direction: column;
+    min-width: 220px;
+}
+
+.menu-col h3 {
+    color: #ffcc00;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #fff;
+    padding-bottom: 8px;
+}
+
+.menu-col a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.5rem;
+    margin-bottom: 12px;
+    transition: color 0.3s;
+}
+
+.menu-col a:hover {
+    color: #ffcc00;
+}
+
+.menu-logout {
+    background: #ffcc00;
+    border: none;
+    color: #00276b;
+    font-weight: 700;
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    width: fit-content;
+}
+
+.menu-logout:hover {
+    background: #ffd633;
+}
+
+@media (max-width: 700px) {
+    .menu-columns {
+        width: 90%;
+        gap: 20px;
+    }
+
+    .menu-col a {
+        font-size: 1.2rem;
+    }
+}
+
+/* --- AEREO CENTRALE (INGRANDITO E VISIBILE) --- */
+.aereo-box {
+    position: relative;
+    width: 100%;
+    height: 85vh; /* Aumentato per ospitare l'aereo più grande */
+    margin: 0 auto;
+    overflow: visible; /* Fondamentale per non tagliare l'aereo quando è enorme */
+}
+
+.aereo-img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* Stato finale */
+    transform: translate(-50%, -50%) scaleX(-1);
+    width: 150%; /* Ingrandito al 150% come richiesto */
+    max-width: 2200px; /* Aumentato il limite per schermi grandi */
+    height: auto;
+    animation: volaEntra 5s ease-out forwards;
+    opacity: 1 !important; /* Forza la visibilità dell'aereo */
+    z-index: 5;
+}
+
+/* Contenitore finestrini: sincronizzato con la scala dell'aereo */
+.windows-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scaleX(-1);
+    width: 150%; 
+    max-width: 2200px;
+    height: 100%;
+    animation: volaEntra 5s ease-out forwards; 
+    pointer-events: none;
     z-index: 10;
 }
 
-.nav-btn:hover {
-    color: #ffcc00;
-    transform: scale(1.2);
+@keyframes volaEntra {
+    0% { 
+        transform: translate(-150%, -50%) scaleX(-1) scale(0.5);
+        opacity: 0;
+    }
+    100% { 
+        transform: translate(-50%, -50%) scaleX(-1) scale(1);
+        opacity: 1; 
+    }
 }
 
-/* --- VIDEO SECTION --- */
-.video-section {
-    padding: 40px 20px;
-    background: #fff;
-    text-align: center;
+@keyframes volaEsci {
+    0% {
+        transform: translate(-50%, -50%) scaleX(-1) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(150%, -60%) scaleX(-1) scale(0.9);
+        opacity: 0;
+    }
 }
+
+.aereo-box.exit .aereo-img,
+.aereo-box.exit .windows-container {
+    animation: volaEsci 2s ease-in forwards;
+}
+
+/* --- FINESTRINI: POSIZIONAMENTO DI PRECISIONE --- */
+.window-frame {
+    position: absolute;
+    width: 4.4%;
+    aspect-ratio: 2 / 3; 
+    background-color: #ecf0f1;
+    border-radius: 20px;
+    border: 2px solid #bdc3c7;
+    overflow: hidden;
+    cursor: pointer;
+    pointer-events: auto;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.3);
+
+    /* 🔧 riallineato */
+    top: 41.6%;
+}
+
+
+/* Posizioni orizzontali dei 7 finestrini distribuiti sulla fusoliera */
+.window-frame:nth-child(1) { left: 65%; }
+.window-frame:nth-child(2) { left: 60%; }
+.window-frame:nth-child(3) { left: 55%; }
+.window-frame:nth-child(4) { left: 35%; }
+.window-frame:nth-child(5) { left: 30%; }
+.window-frame:nth-child(6) { left: 25%; }
+.window-frame:nth-child(7) { left: 20%;}
+
+
+.shutter {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #cfd8dc;
+    transition: transform 0.5s ease;
+    z-index: 2;
+}
+
+/* Quando il finestrino ha la classe 'is-open', l'oscurante sale */
+.window-frame.is-open .shutter {
+    transform: translateY(-90%);
+}
+
+.shutter-title {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 6px 6px 6px 8px;
+    text-align: left;
+    font-size: 0.56rem;
+    font-weight: 700;
+    color: #1a2a3a;
+    line-height: 1.15;
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: clip;
+    transform: scaleX(-1);
+    transform-origin: center;
+    pointer-events: none;
+}
+
+.window-bg {
+    cursor: pointer;
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background-size: cover;
+    background-position: center;
+    border-radius: inherit;
+}
+
+.window-content {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: inherit;
+    overflow: hidden;
+}
+
+.window-content img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: inherit;
+}
+/* --- IL RESTO RIMANE UGUALE --- */
+.window-frame .sky-view {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, #4facfe, #00f2fe);
+    border-radius: inherit;
+}
+
+.shutter {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #cfd8dc;
+    transition: transform 0.5s ease;
+    z-index: 2;
+    border-radius: inherit;
+}
+
+.window-frame.is-open .shutter {
+    transform: translateY(-90%);
+}
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden; /* Nasconde la barra orizzontale */
+    position: relative;
+}
+
+.aereo-box {
+    width: 100vw; /* Usa la larghezza della finestra */
+    overflow: hidden; /* Taglia l'eccedenza dell'aereo gigante */
+}
+

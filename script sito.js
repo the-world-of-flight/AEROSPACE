@@ -173,6 +173,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Avvia scanner una sola volta
     avviaScanner(); 
     installaBottoneTornaSu();
+    installaCavoTraino();
+    inizializzaHomeFlyButton();
 
     // Gestione Accordion (con chiusura automatica se ne apri un altro)
     const acc = document.querySelectorAll(".accordion");
@@ -235,4 +237,91 @@ function installaBottoneTornaSu() {
         btn.style.display = window.scrollY > 300 ? "block" : "none";
     });
     btn.onclick = () => window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function installaCavoTraino() {
+    const plane = document.querySelector('.flyby-plane');
+    const cargoMain = document.querySelector('.tow-cargo main');
+    if (!plane || !cargoMain) return;
+
+    let cable = document.querySelector('.tow-cable');
+    if (!cable) {
+        cable = document.createElement('div');
+        cable.className = 'tow-cable';
+        document.body.appendChild(cable);
+    }
+
+    const updateCable = () => {
+        const p = plane.getBoundingClientRect();
+        const c = cargoMain.getBoundingClientRect();
+
+        // Punto di attacco in zona coda dell'aereo.
+        const endX = p.left + p.width * 0.2;
+        const endY = p.top + p.height * 0.53;
+
+        // Cavo orizzontale: stessa quota della coda dell'aereo.
+        const startX = c.right;
+        const startY = endY;
+        const length = Math.max(0, endX - startX);
+
+        const visible = length > 8 && p.bottom > 0 && p.top < window.innerHeight + 40;
+        cable.style.opacity = visible ? '0.9' : '0';
+
+        if (visible) {
+            cable.style.width = `${length}px`;
+            cable.style.transform = `translate(${startX}px, ${startY}px)`;
+        }
+
+        window.requestAnimationFrame(updateCable);
+    };
+
+    window.requestAnimationFrame(updateCable);
+}
+
+function inizializzaHomeFlyButton() {
+    const homeBtn = document.querySelector('.home-fly-btn');
+    const plane = document.querySelector('.flyby-plane');
+    const cargo = document.querySelector('.tow-cargo');
+    if (!homeBtn || !plane || !cargo) return;
+
+    homeBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (document.body.classList.contains('flyby-exit')) return;
+
+        document.body.classList.add('flyby-exit');
+        const planeComputed = window.getComputedStyle(plane);
+        const cargoComputed = window.getComputedStyle(cargo);
+        const cargoRect = cargo.getBoundingClientRect();
+        const planeRect = plane.getBoundingClientRect();
+
+        const currentCargoX = cargoComputed.transform === 'none'
+            ? 0
+            : new DOMMatrixReadOnly(cargoComputed.transform).m41;
+        const cargoDeltaToRight = (window.innerWidth - cargoRect.left) + 120;
+        const targetCargoX = currentCargoX + cargoDeltaToRight;
+
+        const currentPlaneLeft = parseFloat(planeComputed.left) || planeRect.left;
+        const targetPlaneLeft = window.innerWidth + planeRect.width + 40;
+
+        // Blocca nello stato corrente per evitare scatti tra animazione in corso e uscita.
+        plane.style.animation = 'none';
+        cargo.style.animation = 'none';
+        plane.style.left = `${currentPlaneLeft}px`;
+        plane.style.opacity = planeComputed.opacity;
+        cargo.style.transform = `translateX(${currentCargoX}px)`;
+
+        void plane.offsetWidth;
+
+        plane.style.transition = 'left 2.2s ease-in-out, opacity 2.2s ease-in-out';
+        cargo.style.transition = 'transform 2.2s ease-in-out 0.8s';
+
+        window.requestAnimationFrame(() => {
+            plane.style.left = `${targetPlaneLeft}px`;
+            cargo.style.transform = `translateX(${targetCargoX}px)`;
+        });
+
+        setTimeout(() => {
+            window.location.href = 'index.html';
+        }, 3200);
+    });
 }
