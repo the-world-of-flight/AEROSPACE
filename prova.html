@@ -2,6 +2,7 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maxwell - Aircraft</title>
     <style>
         body {
@@ -80,6 +81,39 @@
         }
 
         .window-frame.is-open .shutter { transform: translateY(-100%); }
+
+        @media (max-width: 1024px) {
+            .aereo-container {
+                width: min(900px, 94vw);
+            }
+
+            .windows-wrapper {
+                gap: 6px;
+            }
+        }
+
+        @media (max-width: 700px) {
+            body {
+                padding: 10px;
+                overflow: auto;
+            }
+
+            .aereo-container {
+                width: min(900px, 98vw);
+            }
+
+            .windows-wrapper {
+                left: 24%;
+                top: 43%;
+                gap: 4px;
+            }
+
+            .window-frame {
+                width: 28px;
+                height: 40px;
+                border-width: 1px;
+            }
+        }
     </style>
 </head>
 <body>

@@ -1,4 +1,4 @@
-/* --- RESET --- */
+﻿/* --- RESET --- */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
@@ -21,15 +21,22 @@ body > .sky-view {
 
 .cloud {
     position: absolute;
-    right: -150px;
-    background: white;
-    border-radius: 50px;
+    right: -260px;
+    width: 180px !important;
+    height: 56px !important;
+    border-radius: 999px;
+    background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.96) 0%, rgba(255, 255, 255, 0.82) 62%, rgba(255, 255, 255, 0) 100%);
+    box-shadow:
+        -46px 6px 0 8px rgba(255, 255, 255, 0.72),
+        42px 2px 0 9px rgba(255, 255, 255, 0.76),
+        4px -11px 0 14px rgba(255, 255, 255, 0.84);
+    filter: blur(0.5px);
     animation: moveClouds linear infinite;
 }
 
 @keyframes moveClouds {
-    from { right: -150px; }
-    to { right: 110%; }
+    from { right: -260px; transform: translateY(0) scale(0.95); opacity: 0.8; }
+    to { right: 112%; transform: translateY(8px) scale(1.06); opacity: 0.95; }
 }
 
 /* --- HEADER --- */
@@ -201,9 +208,9 @@ h1 {
 .aereo-box {
     position: relative;
     width: 100%;
-    height: 85vh; /* Aumentato per ospitare l'aereo più grande */
+    height: 85vh; /* Aumentato per ospitare l'aereo piÃ¹ grande */
     margin: 0 auto;
-    overflow: visible; /* Fondamentale per non tagliare l'aereo quando è enorme */
+    overflow: visible; /* Fondamentale per non tagliare l'aereo quando Ã¨ enorme */
 }
 
 .aereo-img {
@@ -216,7 +223,7 @@ h1 {
     max-width: 2200px; /* Aumentato il limite per schermi grandi */
     height: auto;
     animation: volaEntra 5s ease-out forwards;
-    opacity: 1 !important; /* Forza la visibilità dell'aereo */
+    opacity: 1 !important; /* Forza la visibilitÃ  dell'aereo */
     z-index: 5;
 }
 
@@ -274,7 +281,7 @@ h1 {
     pointer-events: auto;
     box-shadow: inset 0 0 5px rgba(0,0,0,0.3);
 
-    /* 🔧 riallineato */
+    /* ðŸ”§ riallineato */
     top: 41.6%;
 }
 
@@ -381,4 +388,330 @@ html, body {
     width: 100vw; /* Usa la larghezza della finestra */
     overflow: hidden; /* Taglia l'eccedenza dell'aereo gigante */
 }
+
+
+
+/* --- SCENA C130 + DROP FERMO --- */
+.falling-scene {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 25;
+}
+
+.falling-clouds {
+    position: absolute;
+    inset: -40% -25% -20% -25%;
+    opacity: 0.54;
+    background-image:
+        radial-gradient(ellipse at 14% 17%, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.64) 40%, rgba(255, 255, 255, 0) 72%),
+        radial-gradient(ellipse at 34% 41%, rgba(255, 255, 255, 0.92) 0%, rgba(255, 255, 255, 0.52) 44%, rgba(255, 255, 255, 0) 74%),
+        radial-gradient(ellipse at 71% 25%, rgba(255, 255, 255, 0.94) 0%, rgba(255, 255, 255, 0.56) 42%, rgba(255, 255, 255, 0) 73%),
+        radial-gradient(ellipse at 86% 66%, rgba(255, 255, 255, 0.84) 0%, rgba(255, 255, 255, 0.44) 40%, rgba(255, 255, 255, 0) 71%);
+    background-size: 560px 360px, 480px 310px, 620px 390px, 540px 340px;
+    filter: blur(0.8px);
+    animation: cloudsDown 14s linear infinite;
+}
+
+.falling-clouds::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: 0.38;
+    background-image:
+        radial-gradient(ellipse at 28% 53%, rgba(255, 255, 255, 0.88) 0%, rgba(255, 255, 255, 0.4) 48%, rgba(255, 255, 255, 0) 74%),
+        radial-gradient(ellipse at 56% 74%, rgba(255, 255, 255, 0.82) 0%, rgba(255, 255, 255, 0.32) 43%, rgba(255, 255, 255, 0) 72%),
+        radial-gradient(ellipse at 92% 62%, rgba(255, 255, 255, 0.74) 0%, rgba(255, 255, 255, 0.3) 45%, rgba(255, 255, 255, 0) 72%);
+    background-size: 620px 420px, 520px 360px, 460px 300px;
+    filter: blur(1.6px);
+    animation: cloudsDownSlow 24s linear infinite reverse;
+}
+
+.falling-clouds::after {
+    content: "";
+    position: absolute;
+    inset: -12% -8%;
+    opacity: 0.22;
+    background-image:
+        radial-gradient(ellipse at 12% 34%, rgba(255, 255, 255, 0.78) 0%, rgba(255, 255, 255, 0) 68%),
+        radial-gradient(ellipse at 64% 14%, rgba(255, 255, 255, 0.74) 0%, rgba(255, 255, 255, 0) 66%),
+        radial-gradient(ellipse at 82% 44%, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0) 64%);
+    background-size: 760px 480px, 700px 420px, 660px 400px;
+    filter: blur(2.4px);
+    animation: cloudsDownFast 11s linear infinite;
+}
+
+.c130-pass {
+    position: absolute;
+    top: 16vh;
+    left: -38vw;
+    width: clamp(220px, 23vw, 380px);
+    opacity: 0;
+    filter: drop-shadow(0 10px 10px rgba(0, 0, 0, 0.2));
+    transform: scaleX(-1);
+    animation: c130Pass 16s linear 1 forwards;
+}
+
+.drop-zone {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.payload {
+    position: absolute;
+    width: clamp(72px, 9vw, 118px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    transform: translate(-50%, -50%) scale(0.82);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 35;
+    transition: top 1s linear, left 1s linear, opacity 0.2s linear;
+}
+
+.payload.active {
+    opacity: 1;
+}
+
+.payload.parachute-open {
+    transition: top 2.2s cubic-bezier(0.22, 1, 0.36, 1), left 2.2s cubic-bezier(0.22, 1, 0.36, 1), transform 0.5s ease;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.payload.landed {
+    pointer-events: auto;
+    animation: payloadFloat 3.2s ease-in-out infinite alternate;
+}
+
+.payload .parachute-canopy {
+    width: 52%;
+    height: 8px;
+    border-radius: 20px;
+    background: linear-gradient(90deg, #d7263d 0%, #f46036 52%, #ffd166 100%);
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.22);
+    transition: width 0.45s ease, height 0.45s ease, border-radius 0.45s ease;
+}
+
+.payload .parachute-lines {
+    width: 2px;
+    height: 0;
+    opacity: 0.25;
+    background: rgba(255, 255, 255, 0.95);
+    transition: height 0.45s ease, opacity 0.45s ease;
+}
+
+.payload.parachute-open .parachute-canopy {
+    width: 86%;
+    height: 30px;
+    border-radius: 70px 70px 12px 12px;
+}
+
+.payload.parachute-open .parachute-lines {
+    height: 24px;
+    opacity: 1;
+}
+
+
+.payload .payload-title {
+    margin: 0 0 6px 0;
+    padding: 4px 8px;
+    max-width: 150%;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.94);
+    color: #0b2c66;
+    font-size: clamp(0.55rem, 0.8vw, 0.74rem);
+    font-weight: 700;
+    line-height: 1.1;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+    white-space: nowrap;
+}
+.payload .drop-image {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 11px;
+    border: 2px solid rgba(255, 255, 255, 0.95);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.28);
+}
+
+.payload:hover .drop-image {
+    transform: scale(1.05);
+}
+
+@keyframes c130Pass {
+    0% {
+        transform: translateX(0) translateY(0) scaleX(-1);
+        opacity: 0;
+    }
+    8% { opacity: 0.96; }
+    80% { opacity: 0.96; }
+    100% {
+        transform: translateX(160vw) translateY(4vh) scaleX(-1);
+        opacity: 0;
+    }
+}
+
+@keyframes cloudsDown {
+    0% { transform: translateY(-16%) scale(1); }
+    100% { transform: translateY(34%) scale(1.06); }
+}
+
+@keyframes cloudsDownSlow {
+    0% { transform: translateY(-12%) scale(1.04); }
+    100% { transform: translateY(24%) scale(1.1); }
+}
+
+@keyframes cloudsDownFast {
+    0% { transform: translateY(-24%) scale(0.96); }
+    100% { transform: translateY(42%) scale(1.02); }
+}
+
+/* --- RESPONSIVE: MOBILE / TABLET / DESKTOP --- */
+@media (max-width: 699px) {
+    body {
+        min-height: 100dvh;
+    }
+
+    header {
+        min-height: auto;
+        padding: 14px 14px 16px;
+    }
+
+    .logo-container {
+        position: static;
+        margin: 0 0 8px 0;
+    }
+
+    .header-logo {
+        max-width: 112px;
+    }
+
+    h1 {
+        font-size: clamp(1rem, 5.4vw, 1.35rem);
+        padding-top: 0;
+        margin-bottom: 12px;
+        padding-right: 44px;
+    }
+
+    .search-container {
+        max-width: 100%;
+    }
+
+    #searchInput {
+        padding: 10px 14px;
+        font-size: 0.95rem;
+    }
+
+    .hamburger {
+        top: 14px;
+        right: 14px;
+        width: 30px;
+        height: 22px;
+    }
+
+    .menu-screen {
+        align-items: flex-start;
+        overflow-y: auto;
+        padding: 72px 14px 20px;
+    }
+
+    .menu-columns {
+        width: 100%;
+        gap: 16px;
+        flex-direction: column;
+    }
+
+    .menu-col {
+        min-width: 0;
+    }
+
+    .menu-col a {
+        font-size: 1.05rem;
+    }
+
+    .c130-pass {
+        top: 22vh;
+        width: clamp(146px, 55vw, 250px);
+    }
+
+    .payload {
+        width: clamp(56px, 18vw, 84px);
+    }
+
+    .payload .payload-title {
+        white-space: normal;
+        max-width: 190%;
+        font-size: clamp(0.54rem, 2.2vw, 0.7rem);
+    }
+
+    .cloud {
+        transform: scale(0.75);
+        filter: blur(0.9px);
+    }
+}
+
+@media (min-width: 700px) and (max-width: 1024px) {
+    header {
+        padding: 18px 20px;
+    }
+
+    .header-logo {
+        max-width: 128px;
+    }
+
+    h1 {
+        font-size: clamp(1.35rem, 2.9vw, 1.85rem);
+        margin-bottom: 16px;
+    }
+
+    .search-container {
+        max-width: 92%;
+    }
+
+    .menu-columns {
+        width: 92%;
+        gap: 24px;
+    }
+
+    .menu-col a {
+        font-size: 1.15rem;
+    }
+
+    .c130-pass {
+        top: 18vh;
+        width: clamp(190px, 30vw, 300px);
+    }
+
+    .payload {
+        width: clamp(66px, 10vw, 96px);
+    }
+}
+
+@media (min-width: 1025px) {
+    .search-container {
+        max-width: 1000px;
+    }
+
+    .menu-columns {
+        max-width: 1240px;
+    }
+
+    .c130-pass {
+        width: clamp(240px, 22vw, 390px);
+    }
+}
+
+@keyframes payloadFloat {
+    0% { transform: translate(-50%, -50%) scale(1) translateY(0); }
+    100% { transform: translate(-50%, -50%) scale(1) translateY(-8px); }
+}
+
+
+
+
 
