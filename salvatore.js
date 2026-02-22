@@ -16,7 +16,7 @@ async function avviaScanner() {
     // 3. LOCK DI SICUREZZA: Segniamo che lo scanner sta partendo per evitare doppie esecuzioni
     sessionStorage.setItem("indiceRicerca", "LOADING..."); 
 
-    const pagine = ["index.html", "olla.html", "maffucci.html", "olla2.html", "calo.html"];
+    const pagine = ["index.html", "olla.html", "olla2.html", "calo.html", "maffucci.html", "sesta-generazione.html", "chisiamo.html", "login.html"];
     const parser = new DOMParser();
 
     console.log("Scanner: Avvio indicizzazione unica...");

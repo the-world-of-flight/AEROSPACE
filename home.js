@@ -21,7 +21,7 @@ async function avviaScanner() {
         return;
     }
 
-    const pagine = ["olla.html", "index.html", "maffucci.html", "olla2.html", "calo.html", "sesta-generazione.html"];
+    const pagine = ["index.html", "olla.html", "olla2.html", "calo.html", "maffucci.html", "sesta-generazione.html", "chisiamo.html", "login.html"];
 
     for (const url of pagine) {
         try {
@@ -91,17 +91,29 @@ function eseguiRicerca() {
 }
 
 // --- 4. DROP C130 CON IMMAGINI FISSE CLICCABILI ---
+let dropRunId = 0;
+
 function avviaDropC130() {
     const dropZone = document.getElementById("dropZone");
     const plane = document.getElementById("c130Pass");
     if (!dropZone || !plane) return;
 
+    // Nuova run: invalida eventuali loop/timeout della run precedente.
+    dropRunId += 1;
+    const runId = dropRunId;
+
+    // Reset visivo della scena per evitare stati sporchi al rientro in pagina.
+    dropZone.innerHTML = "";
+    plane.style.animation = "none";
+    void plane.offsetWidth;
+    plane.style.animation = "c130Pass 16s linear 1 forwards";
+
     const payloads = [
-        { img: "IMG_1726.JPG.jpeg", href: "olla.html", title: "Interdisciplinarietà", left: 14, top: 58 },
-        { img: "image2.jpeg", href: "olla2.html", title: "Eroi nello spazio", left: 31, top: 66 },
-        { img: "image3.jpeg", href: "calo.html", title: "Leggenda e progresso", left: 49, top: 60 },
-        { img: "image4.jpeg", href: "maffucci.html", title: "Post-eroismo", left: 67, top: 68 },
-        { img: "image5.jpeg", href: "sesta-generazione.html", title: "Sesta generazione", left: 84, top: 60 }
+        { img: "IMG_1726.JPG.jpeg", href: "olla.html", title: "Interdisciplinarietà dell'aerospazio", left: 14, top: 58 },
+        { img: "eroi del cielo.jpeg", href: "olla2.html", title: "Eroi nello spazio", left: 31, top: 66 },
+        { img: "IMG_0272.jpeg", href: "calo.html", title: "Dalla leggenda al progresso", left: 49, top: 60 },
+        { img: "post eroismo.jpg", href: "maffucci.html", title: "Post-eroismo", left: 67, top: 68 },
+        { img: "image3.jpeg", href: "sesta-generazione.html", title: "Sesta generazione", left: 84, top: 60 }
     ];
 
     let indiceDrop = 0;
@@ -117,21 +129,32 @@ function avviaDropC130() {
     };
 
     const creaPayload = (item, start) => {
+        if (runId !== dropRunId) return;
+
         const node = document.createElement("a");
         node.className = "payload";
         node.href = item.href;
         node.setAttribute("aria-label", `Apri ${item.title}`);
 
-        const targetXpx = (item.left / 100) * window.innerWidth;
-        const dropStopYpx = Math.min(window.innerHeight * 0.68, start.y + window.innerHeight * 0.34);
+        const ejectXpx = Math.min(window.innerWidth - 24, start.x + 38 + Math.random() * 56);
+        const dropStopYpx = Math.min(window.innerHeight * 0.7, start.y + window.innerHeight * (0.2 + Math.random() * 0.1));
+        const spinStart = -8 + Math.random() * 16;
+        const spinEnd = -24 + Math.random() * 48;
 
-        node.style.left = `${targetXpx}px`;
+        node.style.left = `${start.x}px`;
         node.style.top = `${start.y}px`;
+        node.style.setProperty("--spin-start", `${spinStart}deg`);
+        node.style.setProperty("--spin-end", `${spinEnd}deg`);
 
         node.innerHTML = `
             <span class="parachute-canopy"></span>
-            <span class="parachute-lines"></span>
-            <span class="parachute-lines"></span>
+            <span class="parachute-rig">
+                <span class="parachute-line l1"></span>
+                <span class="parachute-line l2"></span>
+                <span class="parachute-line l3"></span>
+                <span class="parachute-line l4"></span>
+                <span class="parachute-line l5"></span>
+            </span>
             <span class="payload-title">${item.title}</span>
             <img src="${item.img}" class="drop-image" alt="Anteprima ${item.title}">
         `;
@@ -139,36 +162,41 @@ function avviaDropC130() {
         dropZone.appendChild(node);
 
         requestAnimationFrame(() => {
+            if (runId !== dropRunId) return;
             node.classList.add("active");
+            node.classList.add("ejected");
+            node.style.left = `${ejectXpx}px`;
             node.style.top = `${dropStopYpx}px`;
         });
 
         setTimeout(() => {
+            if (runId !== dropRunId) return;
             node.classList.add("parachute-open");
             node.style.left = `${item.left}%`;
             node.style.top = `${item.top}%`;
 
             setTimeout(() => {
+                if (runId !== dropRunId) return;
                 node.classList.add("landed");
-            }, 2200);
+            }, 2800);
         }, 1000);
     };
 
     const controllaSgancio = () => {
+        if (runId !== dropRunId) return;
         if (indiceDrop >= payloads.length) return;
 
         const tail = getTailPoint();
-        const prossimo = payloads[indiceDrop];
-        const sogliaX = (prossimo.left / 100) * window.innerWidth;
-
-        const haAttraversato =
-            prevTailX !== null &&
-            prevTailX < sogliaX &&
-            tail.x >= sogliaX;
-
-        if (haAttraversato) {
-            creaPayload(prossimo, tail);
-            indiceDrop += 1;
+        if (prevTailX !== null) {
+            // Se il browser salta frame (tab in background o lag), sgancia tutte le soglie attraversate.
+            while (indiceDrop < payloads.length) {
+                const prossimo = payloads[indiceDrop];
+                const sogliaX = (prossimo.left / 100) * window.innerWidth;
+                const haAttraversato = prevTailX < sogliaX && tail.x >= sogliaX;
+                if (!haAttraversato) break;
+                creaPayload(prossimo, tail);
+                indiceDrop += 1;
+            }
         }
 
         prevTailX = tail.x;
@@ -198,6 +226,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     avviaDropC130();
 });
+
+// Ripristina correttamente la scena se la pagina torna dalla cache del browser (back/forward).
+window.addEventListener("pageshow", (event) => {
+    if (event.persisted) {
+        avviaDropC130();
+    }
+});
+
+
+
+
 
 
 

@@ -7,7 +7,7 @@ async function avviaScanner() {
     }
 
     // 2. Lista pagine
-    const pagine = ["olla.html", "index.html", "maffucci.html", "olla2.html", "calo.html"];
+    const pagine = ["index.html", "olla.html", "olla2.html", "calo.html", "maffucci.html", "sesta-generazione.html", "chisiamo.html", "login.html"];
     
     // 3. Scansione Sequenziale (una alla volta)
     for (const url of pagine) {
@@ -98,7 +98,7 @@ async function avviaScanner() {
         return;
     }
 
-    const pagine = ["olla.html", "index.html", "maffucci.html", "olla2.html", "calo.html"];
+    const pagine = ["index.html", "olla.html", "olla2.html", "calo.html", "maffucci.html", "sesta-generazione.html", "chisiamo.html", "login.html"];
     console.log("Inizio scansione sequenziale per risparmiare risorse...");
     
     indiceAutomatico = []; 
@@ -174,6 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
     avviaScanner(); 
     installaBottoneTornaSu();
     installaCavoTraino();
+    inizializzaFlybyMobile();
     inizializzaHomeFlyButton();
 
     // Gestione Accordion (con chiusura automatica se ne apri un altro)
@@ -289,6 +290,11 @@ function inizializzaHomeFlyButton() {
         if (document.body.classList.contains('flyby-exit')) return;
 
         document.body.classList.add('flyby-exit');
+        const isMobile = window.matchMedia('(max-width: 699px)').matches;
+        if (isMobile && plane.classList.contains('mobile-hidden')) {
+            plane.classList.remove('mobile-hidden');
+            plane.style.opacity = '1';
+        }
         const planeComputed = window.getComputedStyle(plane);
         const cargoComputed = window.getComputedStyle(cargo);
         const cargoRect = cargo.getBoundingClientRect();
@@ -307,7 +313,7 @@ function inizializzaHomeFlyButton() {
         plane.style.animation = 'none';
         cargo.style.animation = 'none';
         plane.style.left = `${currentPlaneLeft}px`;
-        plane.style.opacity = planeComputed.opacity;
+        plane.style.opacity = isMobile ? '1' : planeComputed.opacity;
         cargo.style.transform = `translateX(${currentCargoX}px)`;
 
         void plane.offsetWidth;
@@ -325,3 +331,19 @@ function inizializzaHomeFlyButton() {
         }, 3200);
     });
 }
+
+function inizializzaFlybyMobile() {
+    if (!window.matchMedia('(max-width: 699px)').matches) return;
+
+    const plane = document.querySelector('.flyby-plane');
+    if (!plane) return;
+
+    // Dopo l'arrivo iniziale su mobile nasconde l'aereo;
+    // ricomparirà quando l'utente preme Home per il traino in uscita.
+    plane.addEventListener('animationend', () => {
+        if (document.body.classList.contains('flyby-exit')) return;
+        plane.classList.add('mobile-hidden');
+    }, { once: true });
+}
+
+
