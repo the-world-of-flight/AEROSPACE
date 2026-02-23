@@ -1,13 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
+﻿<!DOCTYPE html>
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interdisciplinarità dell’Aerospazio</title>
+    <title>Interdisciplinarità dell'Aerospazio</title>
     <link rel="stylesheet" href="srile sito.css">
     <link rel="icon" type="image/png" href="favicon.jpeg">
-    
-    
 </head>
 <body class="flyby">
     <div class="sky-view">
@@ -15,108 +13,137 @@
         <div class="cloud" style="top: 60%; width: 150px; height: 40px; animation-duration: 20s;"></div>
     </div>
     <img src="aereo-ritagliato.png" class="flyby-plane" alt="Aermacchi MB-326">
+
     <header>
         <a href="index.html" class="home-fly-btn" id="homeFlyBtn">Home</a>
-        <h1>Interdisciplinarità dell'Aereospazio</h1>
+        <h1>Interdisciplinarità dell'Aerospazio</h1>
 
-          <div class="search-wrapper">
-                <div class="search-container">
-                    <input type="text" id="searchInput" placeholder="Cerca un eroe, una data o un concetto...">
-                    <div id="resultsList" class="results-dropdown"></div>
+        <div class="search-wrapper">
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Cerca un eroe, una data o un concetto...">
+                <div id="resultsList" class="results-dropdown"></div>
+            </div>
+        </div>
+
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <div class="menu-screen" id="menuScreen">
+            <div class="menu-columns">
+                <div class="menu-col">
+                    <h3>Informazioni</h3>
+                    <a href="index.html">Home</a>
+                    <a href="chisiamo.html">Chi siamo</a>
+                </div>
+
+                <div class="menu-col">
+                    <h3>Sezioni</h3>
+                    <a href="olla.html">Interdisciplinarietà dell'aerospazio</a>
+                    <a href="olla2.html">Eroi nello spazio</a>
+                    <a href="calo.html">Dalla leggenda al progresso</a>
+                    <a href="maffucci.html">Post-eroismo</a>
+                    <a href="sesta-generazione.html">Sesta generazione</a>
+                </div>
+
+                <div class="menu-col">
+                    <h3>Account</h3>
+                    <button class="menu-logout" onclick="logout()">Logout</button>
                 </div>
             </div>
-                <div class="hamburger" id="hamburger">
-    <span></span>
-    <span></span>
-    <span></span>
-</div>
-
-<div class="menu-screen" id="menuScreen">
-    <div class="menu-columns">
-        <div class="menu-col">
-            <h3>Informazioni</h3>
-            <a href="index.html">Home</a>
-            <a href="chisiamo.html">Chi siamo</a>
         </div>
-
-        <div class="menu-col">
-            <h3>Sezioni</h3>
-            <a href="olla.html">Interdisciplinariet� dell'aerospazio</a>
-            <a href="olla2.html">Eroi nello spazio</a>
-            <a href="calo.html">Dalla leggenda al progresso</a>
-            <a href="maffucci.html">Post-eroismo</a>
-            <a href="sesta-generazione.html">Sesta generazione</a>
-        </div>
-
-        <div class="menu-col">
-            <h3>Extra</h3>
-            <a href="login.html">Login</a>
-        </div>
-    </div>
-</div>
     </header>
+
     <div class="tow-cargo">
-    <main>
-        <section id="iterdisciplinarietà-aerospazio">
-                <h2>Interdisciplinarità dell’Aerospazio</h2>
-                <p>Volare è una sfida che l’uomo affronta da sempre, e l’aerospazio è il punto in cui questa sfida prende forma. Ogni velivolo nasce dall’incontro di competenze diverse che dialogano tra loro: scienza, tecnologia e capacità umane si uniscono per superare i limiti della distanza, della velocità e dell’altitudine.
-                In questo equilibrio complesso, nessuna disciplina lavora da sola. È la collaborazione tra ingegneria, fisica, matematica, biologia e informatica che rende possibile il volo moderno, trasformando idee e sogni in sistemi reali, affidabili e sicuri.</p>
-            <figure>
-                <img src="WhatsApp Image 2026-01-29 at 13.21.42.jpeg" alt="">
-            </figure>
-        
-        </section>
+        <main>
+            <section id="interdisciplinarieta-aerospazio">
+                <h2>Interdisciplinarità dell'Aerospazio</h2>
+                <p>Volare è una sfida che l'uomo affronta da sempre, e l'aerospazio è il punto in cui questa sfida prende forma. Ogni velivolo nasce dall'incontro di competenze diverse che dialogano tra loro attraverso il Systems Engineering (Ingegneria dei Sistemi). Questo approccio metodologico non si limita a costruire "pezzi", ma gestisce la complessità dell'integrazione: un caccia moderno o un satellite sono composti da migliaia di sottosistemi (propulsione, avionica, strutture, controllo termico) che devono funzionare come un unico organismo.</p>
+                <p>In questo equilibrio complesso, nessuna disciplina lavora da sola. È la collaborazione tra ingegneria, fisica, matematica, biologia e informatica che rende possibile il volo moderno, trasformando idee e sogni in sistemi reali, affidabili e sicuri. L'adozione del MBSE (Model-Based Systems Engineering) permette oggi di simulare l'interazione tra tutti questi componenti in un ambiente virtuale prima ancora di tagliare il primo pezzo di metallo.</p>
+                <figure>
+                    <img src="WhatsApp Image 2026-01-29 at 13.21.42.jpeg" alt="Interdisciplinarità dell'aerospazio">
+                </figure>
+            </section>
 
-        <section id="ingegneria-progettazione">
-            
-            <button class="accordion">Ingegneria e Progettazione</button>
-            <div class="panel">
+            <section id="ingegneria-progettazione">
+                <button class="accordion">Ingegneria e Progettazione</button>
+                <div class="panel">
                     <h2>Ingegneria e Progettazione</h2>
-                    <p>Ogni aereo è il risultato di un progetto preciso, in cui materiali avanzati e soluzioni strutturali si combinano per garantire resistenza, leggerezza e prestazioni elevate. L’ingegneria traduce le leggi scientifiche in forme concrete, dando al volo una struttura capace di affrontare condizioni estreme.</p>
-                <figure>
-                    <img src="blueprint.jpeg" alt="">
-                </figure>
-            </div>
-        </section>
+                    <p>Ogni aereo è il risultato di un progetto preciso, in cui materiali avanzati e soluzioni strutturali si combinano per garantire resistenza, leggerezza e prestazioni elevate. L'ingegneria traduce le leggi scientifiche in forme concrete, dando al volo una struttura capace di affrontare condizioni estreme.</p>
+                    <p>La moderna ingegneria aerospaziale si basa sull'uso massiccio di materiali compositi, come i polimeri rinforzati con fibra di carbonio (CFRP). A differenza dei metalli tradizionali, questi materiali offrono un rapporto resistenza/peso eccezionale, permettendo agli aerei di consumare meno carburante pur sopportando carichi strutturali immensi. In zone soggette ad altissime temperature, come gli scarichi dei motori, si predilige invece il titanio, capace di mantenere le sue proprietà meccaniche anche sopra i 600°C senza deformarsi. Inoltre, prima ancora di essere costruito fisicamente, ogni componente viene oggi testato tramite un 'Digital Twin' (gemello digitale), una replica virtuale che simula l'usura e le prestazioni per anni di volo in pochi minuti.</p>
+                    <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;margin:1rem 0;">
+                        <iframe src="https://www.youtube.com/embed/aeueog__DB0" title="Ingegneria aerospaziale" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </section>
 
-        <section id="fisica-matematica">
-            <button class="accordion">Fisica e Matematica del Volo</button>
-            <div class="panel">
-                <h2>Fisica e Matematica del Volo</h2>
-                <p>Dietro la semplicità apparente del volo si nasconde un mondo fatto di forze, flussi e numeri. La fisica spiega il comportamento dell’aria e del movimento, mentre la matematica permette di prevedere traiettorie, simulare scenari e migliorare continuamente le prestazioni.</p>
-                <figure>
-                    <img src="galleria del vento.jpeg" alt="">
-                </figure>
-            </div>
-        </section>
+            <section id="fisica-matematica">
+                <button class="accordion">Fisica e Matematica del Volo</button>
+                <div class="panel">
+                    <h2>Fisica e Matematica del Volo</h2>
+                    <p>Dietro la semplicità apparente del volo si nasconde un mondo fatto di forze, flussi e numeri governato dalle Equazioni di Navier-Stokes. Questi complessi modelli matematici descrivono come fluidi come l'aria si muovono e interagiscono con le superfici. Poiché queste equazioni sono troppo complesse per essere risolte carta e penna per forme irregolari come un aereo, si utilizza la CFD (Computational Fluid Dynamics).</p>
+                    <p>La matematica, attraverso algoritmi di discretizzazione, divide l'aria intorno all'aereo in milioni di piccole celle (mesh), calcolando per ciascuna pressione, velocità e temperatura. Questo permette di prevedere con precisione millimetrica portanza e resistenza, simulare scenari critici (come lo stallo) e ottimizzare l'aerodinamica senza costosi test in galleria del vento continui. La fisica spiega il perché (principio di Bernoulli, leggi di Newton), ma è la matematica computazionale che rende possibile la progettazione moderna.</p>
+                    <figure>
+                        <img src="galleria del vento.jpeg" alt="Fisica e matematica del volo">
+                    </figure>
+                </div>
+            </section>
+
+            <section id="uomo-volo">
+                <button class="accordion">Uomo e Volo</button>
+                <div class="panel">
+                    <h2>Uomo e Volo</h2>
+                    <p>Al centro di ogni sistema aerospaziale c'è l'uomo. La medicina aeronautica e la biologia studiano come il corpo umano reagisce alla quota, alle accelerazioni e allo stress del volo, per garantire che il pilota possa operare in sicurezza anche nelle condizioni più impegnative.</p>
+                    <p>Per sopravvivere ad accelerazioni che possono raggiungere i 9G (dove il corpo pesa 9 volte il suo peso normale), i piloti devono eseguire una tecnica salvavita chiamata AGSM (Anti-G Straining Maneuver) o L-1 maneuver. Questa manovra combina due azioni simultanee per evitare la perdita di coscienza (G-LOC):</p>
+                    <p>1. Tensione muscolare: Il pilota contrae violentemente i muscoli delle gambe, dei glutei e degli addominali per impedire al sangue di defluire verso i piedi.</p>
+                    <p>2. Respirazione ciclica: Si esegue una inspirazione breve seguita da una chiusura della glottide per circa 3 secondi. Questo aumenta la pressione nel torace, forzando il cuore a pompare sangue ossigenato al cervello. È un ritmo serrato e faticoso che richiede un addestramento specifico in centrifuga.</p>
+                    <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;margin:1rem 0;">
+                        <iframe src="https://www.youtube.com/embed/_cTwK_Nu60M" title="AGSM e forza G" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </section>
+
+            <section id="tecnologia-innovazione">
+                <button class="accordion">Tecnologia e Innovazione</button>
+                <div class="panel">
+                    <h2>Tecnologia e Innovazione</h2>
+                    <p>Sistemi digitali, avionica avanzata e intelligenza artificiale affiancano il pilota, migliorando consapevolezza e controllo. La tecnologia non sostituisce l'uomo, ma ne amplifica le capacità, rendendo il volo sempre più sicuro, preciso ed efficace.</p>
+                    <p>La massima espressione dell'interfaccia uomo-macchina è rappresentata dal Gen III Helmet Mounted Display System dell'F-35. Non è un semplice casco, ma un computer indossabile che elimina il tradizionale cruscotto (HUD). La sua caratteristica rivoluzionaria è la capacità di far "vedere attraverso" l'aereo: grazie al sistema DAS (Distributed Aperture System), 6 telecamere a infrarossi poste all'esterno del jet proiettano le immagini direttamente sulla visiera del pilota. Se il pilota guarda in basso, non vede il pavimento della cabina, ma il terreno sotto l'aereo. Inoltre, la visione notturna e i dati di volo sono proiettati davanti agli occhi ovunque il pilota guardi, garantendo una superiorità tattica senza precedenti.</p>
+                    <figure>
+                        <img src="cocpit moderno.jpeg" alt="Tecnologia e innovazione in cabina">
+                    </figure>
+                </div>
+            </section>
         
-        <section id="Uomo-Volo">
-            <button class="accordion">Uomo e Volo</button>
-            <div class="panel">
-            <h2>Uomo e Volo</h2>
-            <p>Al centro di ogni sistema aerospaziale c’è l’uomo. La medicina aeronautica e la biologia studiano come il corpo umano reagisce alla quota, alle accelerazioni e allo stress del volo, per garantire che il pilota possa operare in sicurezza anche nelle condizioni più impegnative.</p>
-            <figure>
-                <img src="tizio.jpeg" alt="">
-            </figure>
-            </div>
-        </section>
-
-        <section id="tecnologia-innovazione">
-            <button class="accordion">Tecnologia e Innovazione</button>
-            <div class="panel">
-            <h2>Tecnologia e Innovazione</h2>
-            <p>Sistemi digitali, avionica avanzata e intelligenza artificiale affiancano il pilota, migliorando consapevolezza e controllo. La tecnologia non sostituisce l’uomo, ma ne amplifica le capacità, rendendo il volo sempre più sicuro, preciso ed efficace.</p>
-        <figure>
-            <img src="cocpit moderno.jpeg" alt="">
-        </figure>
-        </div>
-        </section>
-    </main>
+            <section id="video-sempre-visibili">
+                <h2>Video</h2>
+                <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;margin:1rem 0;">
+                    <iframe src="https://www.youtube.com/embed/aeueog__DB0" title="Ingegneria aerospaziale" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+                <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;margin:1rem 0;">
+                    <iframe src="https://www.youtube.com/embed/_cTwK_Nu60M" title="AGSM e forza G" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+            </section>
+        
+            <section id="video-del-documento">
+                <h2>Video del documento</h2>
+                <p><a href="https://youtu.be/aeueog__DB0?si=T0vZYDFk0lqvyJ4T" target="_blank" rel="noopener noreferrer">Apri video 1 originale</a></p>
+                <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;margin:1rem 0;">
+                    <iframe src="https://www.youtube.com/embed/aeueog__DB0" title="Video del documento 1" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+                <p><a href="https://youtu.be/_cTwK_Nu60M?si=RdRMQszUC8lyC8_r" target="_blank" rel="noopener noreferrer">Apri video 2 originale</a></p>
+                <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;margin:1rem 0;">
+                    <iframe src="https://www.youtube.com/embed/_cTwK_Nu60M" title="Video del documento 2" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+            </section>
+        </main>
     </div>
+
     <script src="script sito.js"></script>
 </body>
 </html>
-
 
 
 
