@@ -7,7 +7,7 @@
     z-index: 1600;
 }
 body {
-    font-family: 'Times New Roman', Times, serif;/* carattere serif */
+    font-family: 'Trebuchet MS', 'Segoe UI', Arial, sans-serif;/* carattere unico */
     line-height: 1.6;/* altezza della linea */
     margin: 0;/* margine zero */
     padding: 0;/* padding zero */
@@ -42,18 +42,21 @@ figure {
 }
 
 figure img {
-    max-width: 50%;/* larghezza massima dell’immagine */
+    max-width: 70%;/* larghezza massima aumentata */
     border-radius: 6px;/* angoli arrotondati */
+    animation: imageDrift 8s ease-in-out infinite alternate;
 }
 figure .img1 {
-    max-width: 50%;
+    max-width: 48%;
     border-radius: 6px;
     float: left;
+    animation: imageDrift 9s ease-in-out infinite alternate;
 }
 figure .img2 {
-    max-width: 50%;
+    max-width: 48%;
     border-radius: 6px;
     float: right;
+    animation: imageDrift 9s ease-in-out infinite alternate;
 }
 
 figcaption {
@@ -733,3 +736,74 @@ body.flyby main {
         padding: 72px 14px 20px;
     }
 }
+
+/* --- ANIMAZIONI SOFT (TUTTE LE PAGINE) --- */
+:root {
+    --reveal-distance: 18px;
+    --reveal-duration: 700ms;
+    --reveal-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(var(--reveal-distance));
+    transition: opacity var(--reveal-duration) var(--reveal-ease),
+        transform var(--reveal-duration) var(--reveal-ease);
+    will-change: transform, opacity;
+}
+
+.reveal.in-view {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* piccoli accenti sulle immagini senza cambiare layout */
+figure img,
+.panel img {
+    transition: transform 0.6s ease, box-shadow 0.6s ease;
+}
+
+figure img:hover,
+.panel img:hover {
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: 0 14px 28px rgba(0, 24, 70, 0.18);
+}
+
+/* menu: ingresso delicato delle voci */
+.menu-screen.open .menu-col a {
+    animation: menuLinkIn 0.45s ease forwards;
+    opacity: 0;
+}
+
+.menu-screen.open .menu-col a:nth-of-type(1) { animation-delay: 0.05s; }
+.menu-screen.open .menu-col a:nth-of-type(2) { animation-delay: 0.11s; }
+.menu-screen.open .menu-col a:nth-of-type(3) { animation-delay: 0.17s; }
+.menu-screen.open .menu-col a:nth-of-type(4) { animation-delay: 0.23s; }
+.menu-screen.open .menu-col a:nth-of-type(5) { animation-delay: 0.29s; }
+
+@keyframes menuLinkIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes imageDrift {
+    0% { transform: translateY(0) scale(1); }
+    100% { transform: translateY(-6px) scale(1.01); }
+}
+
+/* rispetto preferenze accessibilita */
+@media (prefers-reduced-motion: reduce) {
+    .reveal,
+    .menu-screen.open .menu-col a,
+    figure img,
+    .panel img {
+        transition: none !important;
+        animation: none !important;
+        transform: none !important;
+    }
+}
+
+
+
+
+

@@ -176,6 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
     installaCavoTraino();
     inizializzaFlybyMobile();
     inizializzaHomeFlyButton();
+    installaReveal();
 
     // Gestione Accordion (con chiusura automatica se ne apri un altro)
     const acc = document.querySelectorAll(".accordion");
@@ -222,6 +223,31 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 800);
     }
 });
+
+function installaReveal() {
+    const targets = document.querySelectorAll(
+        'main section, main h2, main p, main figure, main figure img, .accordion'
+    );
+    if (!targets.length) return;
+
+    targets.forEach(el => el.classList.add('reveal'));
+
+    if (!('IntersectionObserver' in window)) {
+        targets.forEach(el => el.classList.add('in-view'));
+        return;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('in-view');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.15, rootMargin: '0px 0px -10% 0px' });
+
+    targets.forEach(el => observer.observe(el));
+}
 
 function installaBottoneTornaSu() {
     if (document.getElementById('scroll-to-top-btn')) return;

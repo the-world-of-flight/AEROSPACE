@@ -4,7 +4,7 @@ body {
     align-items: center;
     justify-content: center;
     min-height: 100dvh;
-    font-family: Arial, sans-serif;
+    font-family: 'Trebuchet MS', 'Segoe UI', Arial, sans-serif;
     background-image: url('background.webp');
     background-size: cover;
     background-position: center;
@@ -163,3 +163,4 @@ button:disabled:hover {
         padding: 14px;
     }
 }
+

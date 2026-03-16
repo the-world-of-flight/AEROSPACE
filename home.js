@@ -106,7 +106,7 @@ function avviaDropC130() {
     dropZone.innerHTML = "";
     plane.style.animation = "none";
     void plane.offsetWidth;
-    plane.style.animation = "c130Pass 16s linear 1 forwards";
+    plane.style.animation = "c130Pass 11s linear 1 forwards";
 
     const payloads = [
         { img: "IMG_1726.JPG.jpeg", href: "olla.html", title: "Interdisciplinarietà dell'aerospazio", left: 14, top: 58 },
@@ -178,8 +178,8 @@ function avviaDropC130() {
             setTimeout(() => {
                 if (runId !== dropRunId) return;
                 node.classList.add("landed");
-            }, 2800);
-        }, 1000);
+            }, 2200);
+        }, 800);
     };
 
     const controllaSgancio = () => {
@@ -233,7 +233,6 @@ window.addEventListener("pageshow", (event) => {
         avviaDropC130();
     }
 });
-
 
 
 

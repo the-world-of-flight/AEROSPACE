@@ -3,40 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maxwell - The World of Flight</title>
+    <title>Maxwell - Il Mondo del Volo</title>
     <link rel="stylesheet" href="home.css">
+    <link rel="icon" type="image/png" href="favicon.jpeg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="home">
+    <div class="sky-view" aria-hidden="true">
+        <div class="cloud cloud-1"></div>
+        <div class="cloud cloud-2"></div>
+        <div class="cloud cloud-3"></div>
+        <div class="cloud cloud-4"></div>
+        <div class="cloud cloud-5"></div>
+    </div>
 
-    <div class="sky-view">
-        <div class="cloud" style="top: 20%; width: 100px; height: 30px; animation-duration: 10s;"></div>
-        <div class="cloud" style="top: 60%; width: 150px; height: 40px; animation-duration: 20s;"></div>
+    <div class="hamburger" id="hamburger" aria-label="Apri menu" role="button" tabindex="0">
+        <span></span><span></span><span></span>
     </div>
 
     <div class="falling-scene" aria-hidden="true">
         <div class="falling-clouds"></div>
         <img src="C130H.png" class="c130-pass" id="c130Pass" alt="C-130 in volo">
-        <div class="drop-zone" id="dropZone"></div>
     </div>
+    <div class="drop-zone" id="dropZone" aria-hidden="true"></div>
 
-    <div class="hamburger" id="hamburger">
-        <span></span><span></span><span></span>
-    </div>
-
-    <header>
-        <div class="logo-container">
-            <img src="Gemini_Generated_Image_ho830uho830uho83.png" class="header-logo" alt="Logo">
+    <header class="topbar">
+        <div class="brand">
+            <img src="Gemini_Generated_Image_ho830uho830uho83.png" class="brand-logo" alt="Logo Maxwell">
+            <div class="brand-text">
+                <span class="brand-title">MAXWELL</span>
+                <span class="brand-sub">Il mondo del volo</span>
+            </div>
         </div>
-
-        <h1>MAXWELL IL MONDO DEL VOLO</h1>
 
         <div class="search-wrapper">
             <div class="search-container">
                 <input type="text" id="searchInput" placeholder="Cerca un eroe, una data o un concetto...">
-                <div id="resultsList"></div>
+                <div id="resultsList" class="results-dropdown"></div>
             </div>
         </div>
     </header>
+
+    <main>
+        <p class="hero-note">Dalla leggenda alla tecnologia: scegli una sezione e vola con noi.</p>
+        <section class="drop-spacer" aria-hidden="true"></section>
+
+        <section class="feature">
+            <h2>Intervista a Walter Villadei</h2>
+            <div class="card-grid two">
+                <article class="media-card">
+                    <img src="villadei.jpeg" alt="Intervista completa" class="media-image">
+                    <p class="media-caption">Intervista completa</p>
+                </article>
+                <article class="media-card">
+                    <img src="stazione operativa.jpeg" alt="Highlights intervista Walter Villadei" class="media-image">
+                    <p class="media-caption">Highlights intervista Walter Villadei</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="feature">
+            <h2>Ecco alcuni video:</h2>
+            <div class="card-grid four">
+                <article class="media-card">
+                    <img src="image1.jpeg" alt="Video Aeronautica militare" class="media-image">
+                    <p class="media-caption">Video aeronautica militare</p>
+                </article>
+                <article class="media-card">
+                    <img src="cocpit moderno.jpeg" alt="Freccia tricolori" class="media-image">
+                    <p class="media-caption">Freccia tricolori</p>
+                </article>
+                <article class="media-card">
+                    <img src="image9.jpeg" alt="Storia dell'aviazione" class="media-image">
+                    <p class="media-caption">Storia dell'aviazione</p>
+                </article>
+                <article class="media-card">
+                    <img src="image10.jpeg" alt="Air show" class="media-image">
+                    <p class="media-caption">Air show</p>
+                </article>
+            </div>
+        </section>
+    </main>
 
     <div class="menu-screen" id="menuScreen">
         <div class="menu-columns">
@@ -63,9 +112,5 @@
     </div>
 
     <script src="home.js"></script>
-
 </body>
 </html>
-
-
-
