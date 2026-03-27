@@ -49,17 +49,28 @@
     <main>
         <p class="hero-note">Dalla leggenda alla tecnologia: scegli una sezione e vola con noi.</p>
         <section class="drop-spacer" aria-hidden="true"></section>
+        <section class="mobile-carousel" aria-label="Sezioni principali">
+            <h2>Seleziona la tua rotta</h2>
+            <p class="carousel-note">Scorri e scegli una sezione: tocchi e vai dove vuoi.</p>
+            <div class="carousel-shell">
+                <button class="carousel-btn prev" type="button" aria-label="Sezione precedente">‹</button>
+                <div class="carousel-track" id="mobileCarouselTrack" role="list"></div>
+                <button class="carousel-btn next" type="button" aria-label="Sezione successiva">›</button>
+            </div>
+            <div class="carousel-dots" id="mobileCarouselDots" aria-hidden="true"></div>
+        </section>
 
         <section class="feature">
             <h2>Intervista a Walter Villadei</h2>
-            <div class="card-grid two">
-                <article class="media-card">
-                    <img src="villadei.jpeg" alt="Intervista completa" class="media-image">
+            <div class="card-grid one">
+                <article class="media-card media-card-wide">
+                    <div class="media-video">
+                        <iframe src="https://drive.google.com/file/d/10TJadMDwYjOnffXhmnqsy3mTjf55yDHL/preview"
+                            title="Intervista completa - scuola"
+                            allow="autoplay; fullscreen"
+                            allowfullscreen></iframe>
+                    </div>
                     <p class="media-caption">Intervista completa</p>
-                </article>
-                <article class="media-card">
-                    <img src="stazione operativa.jpeg" alt="Highlights intervista Walter Villadei" class="media-image">
-                    <p class="media-caption">Highlights intervista Walter Villadei</p>
                 </article>
             </div>
         </section>
@@ -68,19 +79,35 @@
             <h2>Ecco alcuni video:</h2>
             <div class="card-grid four">
                 <article class="media-card">
-                    <img src="image1.jpeg" alt="Video Aeronautica militare" class="media-image">
+                    <div class="media-video">
+                        <iframe src="https://www.youtube.com/embed/M8eK_7pE1eA" title="Video Aeronautica Militare"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen></iframe>
+                    </div>
                     <p class="media-caption">Video aeronautica militare</p>
                 </article>
                 <article class="media-card">
-                    <img src="cocpit moderno.jpeg" alt="Freccia tricolori" class="media-image">
+                    <div class="media-video">
+                        <iframe src="https://www.youtube.com/embed/MBhyWfeKSgA" title="Frecce Tricolori - Aeronautica Militare"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen></iframe>
+                    </div>
                     <p class="media-caption">Freccia tricolori</p>
                 </article>
                 <article class="media-card">
-                    <img src="image9.jpeg" alt="Storia dell'aviazione" class="media-image">
+                    <div class="media-video">
+                        <iframe src="https://www.youtube.com/embed/QGAo3o-nkzQ" title="Storia dell'aviazione - documentario"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen></iframe>
+                    </div>
                     <p class="media-caption">Storia dell'aviazione</p>
                 </article>
                 <article class="media-card">
-                    <img src="image10.jpeg" alt="Air show" class="media-image">
+                    <div class="media-video">
+                        <iframe src="https://www.youtube.com/embed/hSu48obxyUU" title="Air show - Aeronautica Militare"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen></iframe>
+                    </div>
                     <p class="media-caption">Air show</p>
                 </article>
             </div>

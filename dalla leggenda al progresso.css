@@ -759,6 +759,7 @@ body.flyby main {
     background-color: #ffcc00;
     border-radius: 10px;
     transition: 0.3s;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
 }
 
 .hamburger.open span:nth-child(1) { transform: translateY(10px) rotate(45deg); }

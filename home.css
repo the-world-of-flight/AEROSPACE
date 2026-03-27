@@ -84,6 +84,7 @@ body.home {
     background-color: var(--accent);
     border-radius: 10px;
     transition: 0.3s;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
 }
 
 .hamburger.open span:nth-child(1) { transform: translateY(10px) rotate(45deg); }
@@ -418,6 +419,117 @@ main {
     height: 480px;
 }
 
+/* --- CAROSELLO MOBILE (AL POSTO DELL'AIRDROP) --- */
+.mobile-carousel {
+    display: none;
+    margin: 10px auto 26px;
+    text-align: center;
+}
+
+.mobile-carousel h2 {
+    font-family: "Playfair Display", "Times New Roman", serif;
+    font-size: clamp(1.6rem, 4.2vw, 2.2rem);
+    margin-bottom: 8px;
+}
+
+.carousel-note {
+    margin: 0 auto 16px;
+    max-width: 540px;
+    color: rgba(3, 20, 60, 0.68);
+    font-weight: 600;
+}
+
+.carousel-shell {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.carousel-track {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    padding: 8px 6px 18px;
+    flex: 1;
+    -webkit-overflow-scrolling: touch;
+}
+
+.carousel-track::-webkit-scrollbar {
+    height: 6px;
+}
+
+.carousel-track::-webkit-scrollbar-thumb {
+    background: rgba(5, 35, 90, 0.22);
+    border-radius: 999px;
+}
+
+.carousel-card {
+    scroll-snap-align: center;
+    min-width: 74%;
+    background: #fff;
+    border-radius: 18px;
+    padding: 14px;
+    text-decoration: none;
+    color: var(--ink);
+    box-shadow: 0 18px 28px rgba(0, 0, 0, 0.16);
+    border: 1px solid rgba(5, 35, 90, 0.08);
+}
+
+.carousel-card img {
+    width: 100%;
+    border-radius: 14px;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.16);
+}
+
+.carousel-title {
+    margin-top: 10px;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.carousel-btn {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(7, 42, 109, 0.9);
+    color: #fff;
+    font-size: 1.4rem;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-btn:disabled {
+    opacity: 0.35;
+    cursor: default;
+}
+
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.carousel-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: rgba(7, 42, 109, 0.25);
+}
+
+.carousel-dot.active {
+    width: 18px;
+    background: rgba(7, 42, 109, 0.85);
+}
+
 .feature {
     margin-top: 40px;
     text-align: center;
@@ -442,6 +554,25 @@ main {
     grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+.card-grid.one {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.media-card-wide {
+    text-align: center;
+}
+
+.media-card-wide .media-video {
+    border-radius: 22px;
+}
+
+.media-card-wide .media-caption {
+    text-align: center;
+    font-size: 1rem;
+}
+
 .media-card {
     text-align: left;
 }
@@ -451,6 +582,24 @@ main {
     border-radius: 18px;
     box-shadow: 0 16px 30px rgba(0, 0, 0, 0.22);
     border: 2px solid rgba(255, 255, 255, 0.9);
+}
+
+.media-video {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 16px 30px rgba(0, 0, 0, 0.22);
+    border: 2px solid rgba(255, 255, 255, 0.9);
+}
+
+.media-video iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
 }
 
 .media-caption {
@@ -634,6 +783,25 @@ main {
     }
 
     .drop-spacer {
-        height: 520px;
+        height: 0;
+    }
+
+    .falling-scene,
+    .drop-zone {
+        display: none;
+    }
+
+    .mobile-carousel {
+        display: block;
+    }
+
+    .carousel-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 1.2rem;
+    }
+
+    .carousel-card {
+        min-width: 82%;
     }
 }

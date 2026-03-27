@@ -92,6 +92,13 @@ function eseguiRicerca() {
 
 // --- 4. DROP C130 CON IMMAGINI FISSE CLICCABILI ---
 let dropRunId = 0;
+const payloads = [
+    { img: "IMG_1726.JPG.jpeg", href: "olla.html", title: "Interdisciplinarietà dell'aerospazio", left: 14, top: 58 },
+    { img: "eroi del cielo.jpeg", href: "olla2.html", title: "Eroi nello spazio", left: 31, top: 66 },
+    { img: "IMG_0272.jpeg", href: "calo.html", title: "Dalla leggenda al progresso", left: 49, top: 60 },
+    { img: "post eroismo.jpg", href: "maffucci.html", title: "Post-eroismo", left: 67, top: 68 },
+    { img: "image3.jpeg", href: "sesta-generazione.html", title: "Sesta generazione", left: 84, top: 60 }
+];
 
 function avviaDropC130() {
     const dropZone = document.getElementById("dropZone");
@@ -107,14 +114,6 @@ function avviaDropC130() {
     plane.style.animation = "none";
     void plane.offsetWidth;
     plane.style.animation = "c130Pass 11s linear 1 forwards";
-
-    const payloads = [
-        { img: "IMG_1726.JPG.jpeg", href: "olla.html", title: "Interdisciplinarietà dell'aerospazio", left: 14, top: 58 },
-        { img: "eroi del cielo.jpeg", href: "olla2.html", title: "Eroi nello spazio", left: 31, top: 66 },
-        { img: "IMG_0272.jpeg", href: "calo.html", title: "Dalla leggenda al progresso", left: 49, top: 60 },
-        { img: "post eroismo.jpg", href: "maffucci.html", title: "Post-eroismo", left: 67, top: 68 },
-        { img: "image3.jpeg", href: "sesta-generazione.html", title: "Sesta generazione", left: 84, top: 60 }
-    ];
 
     let indiceDrop = 0;
     let prevTailX = null;
@@ -206,6 +205,94 @@ function avviaDropC130() {
     requestAnimationFrame(controllaSgancio);
 }
 
+// --- 4B. CAROSELLO MOBILE (SCELTA MANUALE) ---
+function inizializzaCaroselloMobile() {
+    const track = document.getElementById("mobileCarouselTrack");
+    const dots = document.getElementById("mobileCarouselDots");
+    if (!track) return;
+
+    track.innerHTML = payloads.map((item) => `
+        <a class="carousel-card" href="${item.href}" role="listitem">
+            <img src="${item.img}" alt="Anteprima ${item.title}">
+            <div class="carousel-title">${item.title}</div>
+        </a>
+    `).join("");
+
+    const cards = Array.from(track.children);
+    if (dots) {
+        dots.innerHTML = cards.map((_, idx) => `
+            <span class="carousel-dot${idx === 0 ? " active" : ""}"></span>
+        `).join("");
+    }
+
+    const prevBtn = document.querySelector(".carousel-btn.prev");
+    const nextBtn = document.querySelector(".carousel-btn.next");
+
+    const setActive = (index) => {
+        cards.forEach((card, idx) => {
+            card.classList.toggle("is-active", idx === index);
+        });
+        if (dots) {
+            dots.querySelectorAll(".carousel-dot").forEach((dot, idx) => {
+                dot.classList.toggle("active", idx === index);
+            });
+        }
+        if (prevBtn) prevBtn.disabled = index === 0;
+        if (nextBtn) nextBtn.disabled = index === cards.length - 1;
+    };
+
+    const scrollToIndex = (index) => {
+        if (!cards[index]) return;
+        cards[index].scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+        setActive(index);
+    };
+
+    const updateOnScroll = () => {
+        const trackRect = track.getBoundingClientRect();
+        const trackCenter = trackRect.left + trackRect.width / 2;
+        let closestIndex = 0;
+        let minDistance = Infinity;
+        cards.forEach((card, idx) => {
+            const rect = card.getBoundingClientRect();
+            const cardCenter = rect.left + rect.width / 2;
+            const distance = Math.abs(cardCenter - trackCenter);
+            if (distance < minDistance) {
+                minDistance = distance;
+                closestIndex = idx;
+            }
+        });
+        setActive(closestIndex);
+    };
+
+    let scrollTicking = false;
+    track.addEventListener("scroll", () => {
+        if (scrollTicking) return;
+        scrollTicking = true;
+        requestAnimationFrame(() => {
+            updateOnScroll();
+            scrollTicking = false;
+        });
+    });
+
+    if (prevBtn) {
+        prevBtn.addEventListener("click", () => {
+            const current = dots ? dots.querySelector(".carousel-dot.active") : null;
+            const index = current ? Array.from(dots.children).indexOf(current) : 0;
+            scrollToIndex(Math.max(0, index - 1));
+        });
+    }
+
+    if (nextBtn) {
+        nextBtn.addEventListener("click", () => {
+            const current = dots ? dots.querySelector(".carousel-dot.active") : null;
+            const index = current ? Array.from(dots.children).indexOf(current) : 0;
+            scrollToIndex(Math.min(cards.length - 1, index + 1));
+        });
+    }
+
+    setActive(0);
+}
+
 // --- 5. INIZIALIZZAZIONE ---
 document.addEventListener("DOMContentLoaded", () => {
     avviaScanner();
@@ -213,10 +300,19 @@ document.addEventListener("DOMContentLoaded", () => {
     const hb = document.getElementById("hamburger");
     const ms = document.getElementById("menuScreen");
     if (hb && ms) {
-        hb.onclick = () => {
-            hb.classList.toggle("open");
+        hb.setAttribute("aria-expanded", "false");
+        const toggleMenu = () => {
+            const isOpen = hb.classList.toggle("open");
             ms.classList.toggle("open");
+            hb.setAttribute("aria-expanded", isOpen ? "true" : "false");
         };
+        hb.onclick = toggleMenu;
+        hb.addEventListener("keydown", (e) => {
+            if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                toggleMenu();
+            }
+        });
     }
 
     const searchBar = document.getElementById("searchInput");
@@ -224,20 +320,23 @@ document.addEventListener("DOMContentLoaded", () => {
         searchBar.oninput = eseguiRicerca;
     }
 
-    avviaDropC130();
+    const isMobile = window.matchMedia("(max-width: 640px)").matches;
+    if (isMobile) {
+        inizializzaCaroselloMobile();
+    } else {
+        avviaDropC130();
+    }
 });
 
 // Ripristina correttamente la scena se la pagina torna dalla cache del browser (back/forward).
 window.addEventListener("pageshow", (event) => {
     if (event.persisted) {
-        avviaDropC130();
+        const isMobile = window.matchMedia("(max-width: 640px)").matches;
+        if (!isMobile) {
+            avviaDropC130();
+        }
     }
 });
-
-
-
-
-
 
 
 

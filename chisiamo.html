@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="it">
 <head>
     <meta charset="UTF-8">
@@ -26,7 +26,7 @@
             </div>
         </div>
 
-        <div class="hamburger" id="hamburger">
+        <div class="hamburger" id="hamburger" aria-label="Apri menu" role="button" tabindex="0">
             <span></span>
             <span></span>
             <span></span>
@@ -42,7 +42,7 @@
 
             <div class="menu-col">
                 <h3>Sezioni</h3>
-                <a href="olla.html">Interdisciplinarietà dell'aerospazio</a>
+                <a href="olla.html">Interdisciplinarieta dell'aerospazio</a>
                 <a href="olla2.html">Eroi nello spazio</a>
                 <a href="calo.html">Dalla leggenda al progresso</a>
                 <a href="maffucci.html">Post-eroismo</a>
@@ -59,39 +59,97 @@
 
     <div class="tow-cargo">
         <main>
-            <section id="chi-siamo-progetto">
-                <h2>Il nostro progetto</h2>
+            <section id="chi-siamo-progetto" class="about-hero">
+                <h2>Un progetto che prende il volo</h2>
                 <p>
-                    Siamo un gruppo di studenti che ha realizzato questo sito per raccontare
-                    l'evoluzione del volo: dal mito, alle grandi imprese aeronautiche, fino ai temi
-                    piu moderni legati a tecnologia, spazio e societa.
+                    Siamo un gruppo di studenti che ha trasformato un percorso scolastico in un racconto
+                    digitale sul volo. Dalla leggenda agli aerei di nuova generazione, abbiamo costruito
+                    un viaggio chiaro, coerente e visivamente immersivo, pensato per far capire come
+                    scienza, storia e tecnologia si intrecciano ogni volta che un velivolo si stacca da terra.
                 </p>
+                <div class="about-highlight">
+                    <span class="about-tag">Storia</span>
+                    <span class="about-tag">Scienza</span>
+                    <span class="about-tag">Tecnologia</span>
+                    <span class="about-tag">Spazio</span>
+                </div>
             </section>
 
             <section id="chi-siamo-obiettivo">
-                <button class="accordion">Obiettivo del lavoro</button>
+                <button class="accordion">Obiettivi e impatto</button>
                 <div class="panel">
                     <div class="panel-content">
-                        <h2>Obiettivo del lavoro</h2>
+                        <h2>Obiettivi e impatto</h2>
                         <p>
-                            L'obiettivo e unire storia, scienza e attualita in un percorso chiaro e
-                            coinvolgente. Abbiamo organizzato i contenuti per mostrare come il volo
-                            sia cambiato nel tempo e come continui a influenzare il nostro futuro.
+                            Il nostro obiettivo era unire rigore e passione: spiegare concetti complessi con
+                            un linguaggio accessibile, valorizzare le imprese aeronautiche italiane e mostrare
+                            come l'innovazione cambia il modo in cui immaginiamo il futuro. Ogni sezione e pensata
+                            per dare al lettore una scelta chiara e un motivo per approfondire.
                         </p>
+                        <div class="about-grid">
+                            <div class="about-card">
+                                <h3>Chiarezza</h3>
+                                <p>Testi sintetici, ben strutturati e con parole-chiave ben evidenti.</p>
+                            </div>
+                            <div class="about-card">
+                                <h3>Affidabilita</h3>
+                                <p>Ricerca delle fonti, confronto dei dati e selezione accurata delle immagini.</p>
+                            </div>
+                            <div class="about-card">
+                                <h3>Coinvolgimento</h3>
+                                <p>Un sito pensato per far venire voglia di cliccare, esplorare e imparare.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="chi-siamo-metodo">
+                <button class="accordion">Il nostro metodo</button>
+                <div class="panel">
+                    <div class="panel-content">
+                        <h2>Il nostro metodo</h2>
+                        <p>
+                            Abbiamo lavorato come un piccolo team editoriale: pianificazione, divisione dei
+                            compiti, scrittura condivisa e revisione finale. Ogni pagina segue lo stesso stile
+                            per rendere la navigazione fluida e riconoscibile.
+                        </p>
+                        <div class="about-grid">
+                            <div class="about-card">
+                                <h3>Ricerca</h3>
+                                <p>Fonti storiche, video e documenti tecnici verificati.</p>
+                            </div>
+                            <div class="about-card">
+                                <h3>Scrittura</h3>
+                                <p>Tono narrativo, ma preciso: niente slogan, solo contenuti solidi.</p>
+                            </div>
+                            <div class="about-card">
+                                <h3>Design</h3>
+                                <p>Interfacce pulite, coerenti, con un'esperienza mobile curata.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
 
             <section id="chi-siamo-team">
-                <button class="accordion">Come abbiamo lavorato</button>
-                <div class="panel">
-                    <div class="panel-content">
-                        <h2>Come abbiamo lavorato</h2>
-                        <p>
-                            Abbiamo diviso il lavoro in ricerca delle fonti, scrittura dei testi,
-                            selezione delle immagini e sviluppo del sito. Ogni sezione e stata curata
-                            per mantenere lo stesso stile grafico e la stessa facilita di navigazione.
-                        </p>
+                <h2>La squadra</h2>
+                <p>
+                    Siamo studenti curiosi, con competenze diverse e la stessa voglia di far volare le idee.
+                    Il sito e il risultato di una collaborazione vera: ognuno ha portato il suo pezzo di cielo.
+                </p>
+                <div class="about-grid">
+                    <div class="about-card">
+                        <h3>Ricerca & testi</h3>
+                        <p>Studio delle fonti storiche e sintesi dei contenuti.</p>
+                    </div>
+                    <div class="about-card">
+                        <h3>Grafica & immagini</h3>
+                        <p>Scelta delle immagini e cura dell'identita visiva.</p>
+                    </div>
+                    <div class="about-card">
+                        <h3>Sviluppo</h3>
+                        <p>Struttura delle pagine, interazioni e ottimizzazione mobile.</p>
                     </div>
                 </div>
             </section>
